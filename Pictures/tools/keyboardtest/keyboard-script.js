@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Key Name Translation Mapping
     const keyMap = {
         'Escape': 'Esc',
-        'Backspace': 'BS',
+        'Backspace': '後退',
         'Tab': 'タブ',
-        'Enter': 'Enter',
+        'Enter': '改行',
         'ShiftLeft': '左シフト',
         'ShiftRight': '右シフト',
         'ControlLeft': '左Ctrl',
@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'ArrowLeft': '←',
         'ArrowRight': '→',
         'CapsLock': '英数/Caps',
-        'Insert': 'Ins',
-        'Delete': 'Del',
-        'Home': 'Home',
-        'End': 'End',
-        'PageUp': 'PgUp',
-        'PageDown': 'PgDn',
+        'Insert': '挿入',
+        'Delete': '削除',
+        'Home': 'ホーム',
+        'End': 'エンド',
+        'PageUp': 'ページ上',
+        'PageDown': 'ページ下',
         'NonConvert': '無変換',
         'Convert': '変換',
         'KanaMode': 'カタカナ',
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Numpad0': 'Num 0', 'Numpad1': 'Num 1', 'Numpad2': 'Num 2', 'Numpad3': 'Num 3',
         'Numpad4': 'Num 4', 'Numpad5': 'Num 5', 'Numpad6': 'Num 6', 'Numpad7': 'Num 7',
         'Numpad8': 'Num 8', 'Numpad9': 'Num 9', 'NumpadDecimal': 'Num .',
-        'NumpadEnter': 'Num Enter', 'NumpadAdd': 'Num +', 'NumpadSubtract': 'Num -',
+        'NumpadEnter': 'Num 改行', 'NumpadAdd': 'Num +', 'NumpadSubtract': 'Num -',
         'NumpadMultiply': 'Num *', 'NumpadDivide': 'Num /', 'NumLock': 'NumLk'
     };
 
