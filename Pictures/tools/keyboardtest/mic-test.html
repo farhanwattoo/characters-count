@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マイクテスト | 明瞭度、音量、ノイズのオンライン確認</title>
+  <meta name="description"
+    content="ブラウザで即座にマイクの明瞭度を確認。音量レベルの可視化とオシロスコープによる信号解析で、ビデオ会議やストリーミング前の音声チェックに最適です。">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="マイクテスト | リアルタイム・音声ハードウェア診断">
+  <meta property="og:description" content="あなたの声はクリアに聞こえていますか？無料のマイク音質チェック。">
+  <meta property="og:type" content="website">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "オンラインマイクテスター",
+      "operatingSystem": "Any",
+      "applicationCategory": "HardwareDiagnostics",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "description": "マイクの音量と波形を視覚的に表示して動作確認を行う無料ツールです。"
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="brand">
+      <span>DeviceTester</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html" class="active">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+      <a href="speed-test.html">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="test-container" id="mic-test-area">
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="label">現在のボリューム:</span>
+          <span class="value" id="input-level">0%</span>
+        </div>
+        <div class="status-item">
+          <span class="label">ステータス:</span>
+          <span class="value" id="mic-status" style="color: var(--danger);">未接続</span>
+        </div>
+        <div class="status-item">
+          <span class="label">最大音量:</span>
+          <span class="value" id="max-volume">0%</span>
+        </div>
+      </div>
+
+      <!-- Mic Pulse and Oscilloscope -->
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 0;">
+        <div id="mic-pulse" style="width: 15rem; height: 15rem; background: var(--card-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; border: 4px solid var(--card-border); transition: all 0.1s; overflow: hidden;">
+          <div id="mic-glow" style="position: absolute; width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 50px var(--primary-glow); opacity: 0; transition: opacity 0.1s;"></div>
+          <span style="font-size: 5rem; z-index: 1;">🎙️</span>
+        </div>
+
+        <div style="width: 100%; max-width: 800px; height: 12rem; background: rgba(0,0,0,0.3); border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--card-border);">
+          <canvas id="oscilloscope" style="width: 100%; height: 100%;"></canvas>
+        </div>
+
+        <div style="display: flex; gap: 1.5rem;">
+          <button class="btn btn-primary" id="start-mic" style="font-size: 1.1rem; padding: 1rem 2rem;">テストを開始</button>
+          <button class="btn" id="stop-mic" style="background: var(--card-border); color: var(--text-muted);">終了</button>
+        </div>
+        <p id="mic-error" style="color: var(--danger); font-size: 0.9rem; display: none;">エラー: マイクへのアクセスが拒否されたか、デバイスが見つかりませんでした。</p>
+      </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <article class="seo-section">
+      <div class="seo-content">
+        <h2>オンライン・マイク音質チェック: 明瞭度とノイズの診断</h2>
+        <p>
+          ビデオ会議やゲーム実況、ポッドキャスト制作において、クリアな音声は信頼の証です。当サイトの<strong>マイクテスト</strong>は、あなたの声が相手にどう聞こえているかを視覚的に分析します。
+        </p>
+
+        <h3>音声波形の分析機能</h3>
+        <p>
+          オシロスコープ機能により、単なる音量だけでなく「波形」として声を捉えます。波形が上下に張り付いている場合は音量が大きすぎ（クリッピング）、平坦すぎる場合はゲインが低すぎます。
+        </p>
+        
+        <h3>トラブルシューティングガイド</h3>
+        <ul>
+          <li><strong>マイクが認識されない場合:</strong> ブラウザの左上の鍵アイコンをクリックして、マイクのアクセス許可が「オン」になっているか確認してください。</li>
+          <li><strong>音が篭っている（こもっている）:</strong> マイクの前に障壁があるか、物理的な埃が詰まっている可能性があります。PC側のノイズ抑制設定が強すぎて声が削られている場合もあります。</li>
+        </ul>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>エコーを防ぐには？</h4>
+            <p>スピーカーからの音がマイクに入るとエコーが発生します。ヘッドセットを使用するか、エコーキャンセル機能を有効にしてください。</p>
+          </div>
+          <div class="faq-item">
+            <h4>ノイズがひどい時は？</h4>
+            <p>充電中のラップトップだとノイズが乗る場合があります。また、マイクのケーブルがノイズを拾いやすいこともあるため、別のUSBポートを試してください。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">ホーム</a>
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+    </div>
+    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+  </footer>
+
+  <script src="mic-script.js"></script>
+</body>
+
+</html>

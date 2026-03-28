@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スピーカーテスト | 左右バランス、周波数、音割れの確認</title>
+  <meta name="description"
+    content="スピーカーとヘッドホンの左右バランスを独立してテスト。周波数スイープによって低音から高音までの音割れやノイズを検出し、オーディオ環境の健全性をチェックします。">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="スピーカーテスト | リアルタイム・音声ハードウェア診断">
+  <meta property="og:description" content="あなたのスピーカーは正常に鳴っていますか？音の歪みや左右差をチェック。">
+  <meta property="og:type" content="website">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "オンラインスピーカーテスター",
+      "operatingSystem": "Any",
+      "applicationCategory": "HardwareDiagnostics",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "description": "スピーカーの左右バランスや周波数特性を確認するための無料ツールです。"
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="brand">
+      <span>DeviceTester</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html" class="active">スピーカー</a>
+      <a href="speed-test.html">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="test-container" id="speaker-test-area">
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="label">出力チャンネル:</span>
+          <span class="value" id="current-channel">NONE</span>
+        </div>
+        <div class="status-item">
+          <span class="label">周波数:</span>
+          <span class="value" id="current-freq">0Hz</span>
+        </div>
+        <div class="status-item">
+          <span class="label">バランス:</span>
+          <span class="value" id="current-balance">センター</span>
+        </div>
+      </div>
+
+      <!-- Speaker Visualizer -->
+      <div style="display: flex; justify-content: space-around; align-items: center; gap: 2rem; padding: 3rem 0; flex-wrap: wrap;">
+        <div id="spk-left" style="width: 12rem; height: 18rem; background: var(--card-bg); border-radius: 1.5rem; border: 4px solid var(--card-border); position: relative; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
+          <div class="spk-cone" style="width: 8rem; height: 8rem; border-radius: 50%; border: 6px solid var(--card-border); transition: all 0.1s; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 3rem; height: 3rem; background: var(--card-border); border-radius: 50%; transition: all 0.1s;"></div>
+          </div>
+          <span style="font-weight: 700; color: var(--text-muted);">左 (LEFT)</span>
+          <button class="btn btn-primary test-trigger" data-side="left">左をテスト</button>
+        </div>
+
+        <div id="spk-right" style="width: 12rem; height: 18rem; background: var(--card-bg); border-radius: 1.5rem; border: 4px solid var(--card-border); position: relative; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
+          <div class="spk-cone" style="width: 8rem; height: 8rem; border-radius: 50%; border: 6px solid var(--card-border); transition: all 0.1s; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 3rem; height: 3rem; background: var(--card-border); border-radius: 50%; transition: all 0.1s;"></div>
+          </div>
+          <span style="font-weight: 700; color: var(--text-muted);">右 (RIGHT)</span>
+          <button class="btn btn-primary test-trigger" data-side="right">右をテスト</button>
+        </div>
+      </div>
+
+      <!-- Frequency Controls -->
+      <div style="background: rgba(0,0,0,0.2); padding: 2.5rem; border-radius: 2rem; text-align: center;">
+        <h3 style="margin-bottom: 2rem;">周波数応答テスター</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">スライダーを動かして周波数のスイープを行います。特定の音域で「ジーッ」という雑音や音割れがないか確認してください。</p>
+        
+        <input type="range" id="freq-slider" min="20" max="20000" step="10" value="440" style="width: 100%; max-width: 600px; margin-bottom: 2rem; accent-color: var(--primary);">
+        
+        <div style="display: flex; justify-content: center; gap: 1.5rem;">
+          <button class="btn btn-primary" id="play-freq" style="min-width: 8rem;">再生</button>
+          <button class="btn" id="stop-freq" style="background: var(--card-border); min-width: 8rem; color: var(--text-muted);">停止</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <article class="seo-section">
+      <div class="seo-content">
+        <h2>スピーカーの左右バランスと不具合の即時診断</h2>
+        <p>
+          動画視聴や音楽鑑賞中に、なんとなく音が片寄っている（バランスが悪い）と感じたことはありませんか？当サイトの<strong>スピーカーテスト</strong>は、左右の出力を完全に分離し、各個体の音量や質感を確認できる無料ツールです。
+        </p>
+
+        <h3>高度な周波数スイープによる音割れチェック</h3>
+        <p>
+          低音から高音まで幅広い周波数を生成することで、ハードウェアの物理的な破損（コーンの亀裂など）を発見できます。特に低音で震える音が聞こえる場合は、スピーカーが「飛んでいる」可能性があります。
+        </p>
+        
+        <h3>トラブルシューティング</h3>
+        <ul>
+          <li><strong>音が鳴らない:</strong> PCの音量設定だけでなく、ブラウザのタブが消音になっていないか、スピーカーの電源やケーブル接続に問題がないか確認してください。</li>
+          <li><strong>左右で音量が違う:</strong> OS上の「サウンド設定」のバランス調整が中央にあるかチェックしてください。イヤホンの場合は、イヤーチップの詰まりが原因であることも多いです。</li>
+        </ul>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>人間の耳に聞こえる音の範囲は？</h4>
+            <p>一般的に20Hzから20,000Hz（20kHz）と言われています。年齢とともに高音域は聞こえにくくなる傾向があります。当ツールのスライダーで自分の可聴域を確認できますが、耳を痛めないよう適度な音量でテストしてください。</p>
+          </div>
+          <div class="faq-item">
+            <h4>スピーカーからノイズが聞こえる時は？</h4>
+            <p>ACアダプタや周囲の電化製品からの干渉（電磁ノイズ）や、デジタル変換時の微小な不具合が考えられます。接続ポートを変更してみてください。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">ホーム</a>
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+    </div>
+    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+  </footer>
+
+  <script src="speaker-script.js"></script>
+</body>
+
+</html>

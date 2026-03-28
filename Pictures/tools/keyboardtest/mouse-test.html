@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マウステスト | クリック、スクロール、ポーリングレートの確認</title>
+  <meta name="description"
+    content="ブラウザでマウスの動作を精密にテスト。左右・中央クリック、スクロール、そしてゲーミングマウスで重要なポーリングレートをリアルタイムで測定・可視化します。">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="マウステスト | リアルタイム・ハードウェア診断">
+  <meta property="og:description" content="マウスクリックや移動の精度を瞬時に確認。無料のオンラインマウス診断。">
+  <meta property="og:type" content="website">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "オンラインマウステスター",
+      "operatingSystem": "Any",
+      "applicationCategory": "HardwareDiagnostics",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "description": "マウスのクリックやスクロール、ポーリングレートを視覚的に確認するための無料オンラインツールです。"
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="brand">
+      <span>DeviceTester</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html" class="active">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+      <a href="speed-test.html">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="test-container" id="mouse-test-area">
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="label">最後のクリック:</span>
+          <span class="value" id="last-click-name">-</span>
+        </div>
+        <div class="status-item">
+          <span class="label">ポーリングレート:</span>
+          <span class="value" id="polling-rate">0Hz</span>
+        </div>
+        <div class="status-item">
+          <span class="label">クリック数:</span>
+          <span class="value" id="clicks-count">0</span>
+        </div>
+        <div class="status-item">
+          <span class="label">スクロール:</span>
+          <span class="value" id="scroll-direction">-</span>
+        </div>
+      </div>
+
+      <!-- Mouse Visualizer -->
+      <div style="display: flex; gap: 4rem; flex-wrap: wrap; justify-content: center; align-items: flex-start; margin-top: 2rem;">
+        <div class="mouse-svg-container" style="position: relative;">
+          <svg width="200" height="320" viewBox="0 0 200 320" style="filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));">
+            <!-- Mouse Body -->
+            <path id="mouse-body" d="M100 0 C45 0 0 45 0 100 L0 220 C0 275 45 320 100 320 C155 320 200 275 200 220 L200 100 C200 45 155 0 100 0 Z" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+            
+            <!-- Mouse Buttons -->
+            <path id="mouse-left" d="M10 100 C10 55 50 15 95 15 L95 140 L10 140 Z" fill="#243447" style="transition: all 0.1s;"/>
+            <path id="mouse-right" d="M105 15 C150 15 190 55 190 100 L190 140 L105 140 Z" fill="#243447" style="transition: all 0.1s;"/>
+            
+            <!-- Mouse Scroll Wheel -->
+            <rect id="mouse-middle" x="90" y="40" width="20" height="50" rx="8" fill="#334155" style="transition: all 0.1s;"/>
+            
+            <!-- Indicators Layer -->
+            <text x="50" y="90" fill="#94a3b8" font-size="20" font-family="Lexend" text-anchor="middle" pointer-events="none">L</text>
+            <text x="150" y="90" fill="#94a3b8" font-size="20" font-family="Lexend" text-anchor="middle" pointer-events="none">R</text>
+            <text x="100" y="220" fill="#94a3b8" font-size="24" font-family="Noto Sans JP" text-anchor="middle" pointer-events="none">中央</text>
+          </svg>
+        </div>
+
+        <!-- Real-Time Input Monitor -->
+        <div style="flex: 1; min-width: 300px; background: rgba(0,0,0,0.2); border-radius: 1.5rem; padding: 2rem;">
+          <h3 style="margin-bottom: 1rem; color: var(--primary);">入力信号モニター</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">キャンバス上でマウスを動かして、信号の頻度とレスポンスの一貫性をチェックしてください。</p>
+          <div id="polling-canvas-container" style="height: 15rem; background: #0f172a; border-radius: 1rem; border: 1px solid var(--card-border); position: relative; overflow: hidden;">
+            <canvas id="polling-graph" style="width: 100%; height: 100%;"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem; text-align: center;">
+        <button class="btn btn-primary" id="reset-mouse">カウンターをリセット</button>
+      </div>
+    </section>
+
+    <!-- Detailed SEO Article Section -->
+    <article class="seo-section">
+      <div class="seo-content">
+        <h2>マスのチャタリング（二重クリック）と精度の検証</h2>
+        <p>
+          プロのデザイナーやゲーマーにとって、マウスの精度は命です。長年使っているとマウススイッチが劣化し、一度のクリックが二度押されたように反応する<strong>「チャタリング」現象</strong>が発生することがあります。
+        </p>
+
+        <h3>ポーリングレートとゲーミングパフォーマンス</h3>
+        <p>
+          当サイトの<strong>マウステスト</strong>では、マウスがPCに位置情報を送る頻度である「ポーリングレート（Hz）」を可視化できます。一般的な事務用マウスは125Hz程度、高性能ゲーミングマウスは1000Hz以上を目指します。安定した数値が出ているか確認しましょう。
+        </p>
+        
+        <h3>トラブルシューティング</h3>
+        <ul>
+          <li><strong>二重クリック（チャタリング）:</strong> 右上のクリック数カウンターが一度の操作で「2」増える場合、接点の劣化が疑われます。</li>
+          <li><strong>スクロールが逆行する:</strong> スクロールホイールの回転方向と画面の動きが不一致な場合、センサー内部の汚れが原因の可能性があります。</li>
+        </ul>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>適切なポーリングレートは？</h4>
+            <p>通常の用途では125Hz〜250Hzで十分ですが、対人ゲームでは500Hz〜1000Hz以上が推奨されます。これにより入力遅延（ラグ）が最小限になります。</p>
+          </div>
+          <div class="faq-item">
+            <h4>チャタリングの原因は？</h4>
+            <p>主にスイッチ接点の摩耗や、静電気の蓄積、ソフト側の不具合が原因です。一度マウスをパソコンから外して、ボタンを連打して静電気を逃がすと改善することもあります。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">ホーム</a>
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+    </div>
+    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+  </footer>
+
+  <script src="mouse-script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ネット速度テスト | ダウンロード & アップロード & Ping値</title>
+  <meta name="description"
+    content="ブラウザで即座にインターネットの速度を測定。ダウンロード、アップロード、Ping値を高精度で可視化します。インストール不要・完全無料。">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="インターネット速度テスト | リアルタイム診断ツール">
+  <meta property="og:description" content="回線の速度をチェック。クリックひとつでダウンロード、アップロード、Ping値を測定。">
+  <meta property="og:type" content="website">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ネット速度テストツール",
+      "operatingSystem": "Any",
+      "applicationCategory": "NetworkDiagnostics",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "description": "インターネット接続の回線速度とレイテンシを測定するツールです。"
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="brand">
+      <span>DeviceTester</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+      <a href="speed-test.html" class="active">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="test-container" id="speed-test-area">
+      <div class="hero" style="margin-bottom: 2rem;">
+        <h1>インターネット速度テスト</h1>
+        <p>リアルタイムで接続品質（ダウンロード/アップロード/レイテンシ）を測定します。</p>
+      </div>
+
+      <div class="speed-gauge-container">
+        <div class="speed-gauge" id="speed-gauge"></div>
+        <div class="speed-val-display">
+          <span class="number" id="speed-number">0</span>
+          <span class="unit" id="speed-unit">Mbps</span>
+        </div>
+      </div>
+
+      <div class="speed-results-grid">
+        <div class="speed-result-card" id="card-ping">
+          <span class="label">Ping (ms)</span>
+          <span class="value" id="res-ping">0</span>
+        </div>
+        <div class="speed-result-card" id="card-download">
+          <span class="label">ダウンロード</span>
+          <span class="value" id="res-download">0.0</span>
+        </div>
+        <div class="speed-result-card" id="card-upload">
+          <span class="label">アップロード</span>
+          <span class="value" id="res-upload">0.0</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem; text-align: center;">
+        <button class="btn btn-primary" id="start-speed-test" style="font-size: 1.25rem; padding: 1rem 2.5rem;">測定を開始する</button>
+      </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <article class="seo-section">
+      <div class="seo-content">
+        <h2>インターネットの回線速度を正しく測定するために</h2>
+        <p>
+          「ページが開くのが遅い」「動画が止まる」…。そんな時は、まず現状の<strong>回線速度（スピードテスト）</strong>を客観的に評価しましょう。ダウンロード（下り）、アップロード（上り）、そしてPing（応答速度）の3要素を測定することで、原因がPCにあるのかネット回線にあるのかが分かります。
+        </p>
+
+        <h3>速度テストの各項目の意味</h3>
+        <ul>
+          <li><strong>ダウンロード（下り）:</strong> データの受信速度。Webサイトの閲覧、動画視聴、アプリのダウンロードに直結します。</li>
+          <li><strong>アップロード（上り）:</strong> データの送信速度。動画の投稿、メールの送信、クラウドへの同期に影響します。</li>
+          <li><strong>Ping値（レイテンシ）:</strong> サーバーとの応答速度。数値が低いほど優秀で、オンラインゲームやZoom会議の「ラグ」を抑えます。</li>
+        </ul>
+
+        <h3>より正確な測定のコツ</h3>
+        <p>
+          一度の測定だけでなく、時間帯を変えて複数回行うのが<strong>おすすめ</strong>です。夜間の混雑時など、プロバイダーごとの特性が見えてきます。
+        </p>
+
+        <div class="faq-grid" style="margin-top: 3rem;">
+          <div class="faq-item">
+            <h4>Mbps（メガビーピーエス）とは？</h4>
+            <p>1秒間に送信できるデータの量を表す単位です。一般的に10Mbpsあれば通常の使用に問題なく、50Mbps以上あれば快適な4K動画視聴が可能です。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Ping値が高いとどうなりますか？</h4>
+            <p>ボタンを押してから動作が反映されるまで時間がかかります（ラグ）。ゲームでは致命的な遅延となり、ビデオ会議では音声が重なってしまう原因になります。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">ホーム</a>
+      <a href="keyboard-test.html">キーボード</a>
+      <a href="mouse-test.html">マウス</a>
+      <a href="mic-test.html">マイク</a>
+      <a href="speaker-test.html">スピーカー</a>
+      <a href="speed-test.html">スピードテスト</a>
+    </div>
+    <p style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+  </footer>
+
+  <script src="speed-script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is Keyboard Ghosting? | Online Diagnostic Guide</title>
+  <meta name="description"
+    content="Learn the technical cause of keyboard ghosting, how it affects gaming performance, and how to test your hardware for N-key rollover (NKRO) for free.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="brand">
+      <span>HardwareTest</span>
+    </a>
+    <nav aria-label="Main Navigation">
+      <a href="../keyboard-test.html">Keyboard</a>
+      <a href="../mouse-test.html">Mouse</a>
+      <a href="../mic-test.html">Microphone</a>
+      <a href="../speaker-test.html">Speakers</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="seo-content" style="padding-top: 2rem;">
+      <h1>What is Keyboard Ghosting? A Technical Deep Dive</h1>
+      <p>
+        In competitive gaming, every millisecond and every input counts. <strong>Keyboard ghosting</strong> is an architectural limitation in many consumer-grade keyboards that causes certain keys to fail when multiple keys are pressed simultaneously.
+      </p>
+
+      <h2>The Electrical Matrix Problem</h2>
+      <p>
+        Most keyboards use a grid-based "matrix" for their electrical circuits. When you press a key, you complete a circuit at a specific X-Y intersection. However, when you press three or more keys (e.g., W, A, and Shift), the current can follow a parallel path, making it impossible for the controller to distinguish which third key was actually pressed.
+      </p>
+
+      <h2>Symptoms of Ghosting</h2>
+      <ul>
+        <li>A keypress is ignored during intense activity.</li>
+        <li>Your character stops moving when you try to strafe and crouch simultaneously.</li>
+        <li>A "beep" sound from your system indicating an input overflow.</li>
+      </ul>
+
+      <h3>How to Test for Ghosting</h3>
+      <p>
+        The easiest way to verify if your hardware is ghost-free is to use our <a href="../keyboard-test.html">online keyboard ghosting test</a>. Simply hold down your primary gaming keys (WASD, Space, Shift, Ctrl) and see if all of them light up on the virtual display.
+      </p>
+
+      <h3>What is N-Key Rollover (NKRO)?</h3>
+      <p>
+        High-performance gaming keyboards feature <strong>NKRO</strong>, which means the controller has a dedicated diode for every single key. This prevents "signal crosstalk" and allows you to press as many keys as you want simultaneously with 0% ghosting.
+      </p>
+
+      <section class="faq-grid">
+        <div class="faq-item">
+          <h4>Can software fix keyboard ghosting?</h4>
+          <p>No. Ghosting is a physical hardware limitation of the electrical matrix. To fix it, you generally need to upgrade to a mechanical keyboard with NKRO support.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Are mechanical keyboards ghost-free?</h4>
+          <p>Not necessarily. While most modern mechanical keyboards support NKRO, some budget models still use a limited matrix. Always check the product specifications for "Anti-Ghosting" or "NKRO."</p>
+        </div>
+      </section>
+
+      <div style="margin-top: 4rem; text-align: center;">
+        <a href="../keyboard-test.html" class="btn btn-primary">Try our Ghosting Test Now</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="../index.html">Home</a>
+      <a href="../keyboard-test.html">Keyboard Test</a>
+      <a href="../mouse-test.html">Mouse Test</a>
+      <a href="../mic-test.html">Mic Test</a>
+      <a href="../speaker-test.html">Speaker Test</a>
+    </div>
+    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 HardwareTest Diagnostics.</p>
+  </footer>
+
+</body>
+
+</html>
