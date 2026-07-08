@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const micPulse = document.getElementById('mic-pulse');
     const micGlow = document.getElementById('mic-glow');
     const micError = document.getElementById('mic-error');
-    
+
     let audioCtx = null;
     let stream = null;
     let analyser = null;
@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const startTest = async () => {
+        if (stream) return;
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            micError.textContent = 'エラー: このブラウザはマイク入力 (getUserMedia) に対応していません。';
+            micError.style.display = 'block';
+            return;
+        }
+
+        startBtn.disabled = true;
         try {
             stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -33,41 +41,55 @@ document.addEventListener('DOMContentLoaded', () => {
             analyser.fftSize = 256;
             source.connect(analyser);
 
-            micStatus.textContent = 'CONNECTED';
+            micStatus.textContent = '接続中';
             micStatus.style.color = 'var(--accent)';
-            startBtn.disabled = true;
             micError.style.display = 'none';
 
             draw();
         } catch (err) {
             console.error('Mic access denied:', err);
             micError.style.display = 'block';
+            micStatus.textContent = 'エラー';
+            micStatus.style.color = 'var(--danger)';
+            startBtn.disabled = false;
+            stream = null;
         }
     };
 
     const stopTest = () => {
-        if (stream) {
-            stream.getTracks().forEach(track => track.stop());
+        if (!stream) return;
+
+        cancelAnimationFrame(animationId);
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+        analyser = null;
+        if (audioCtx) {
             audioCtx.close();
-            cancelAnimationFrame(animationId);
-            
-            micStatus.textContent = 'DISCONNECTED';
-            micStatus.style.color = 'var(--danger)';
-            startBtn.disabled = false;
-            inputLevelVal.textContent = '0%';
-            micPulse.style.transform = 'scale(1)';
-            micGlow.style.opacity = '0';
+            audioCtx = null;
         }
+
+        micStatus.textContent = '停止中';
+        micStatus.style.color = 'var(--danger)';
+        startBtn.disabled = false;
+        inputLevelVal.textContent = '0%';
+        micPulse.style.transform = 'scale(1)';
+        micGlow.style.opacity = '0';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
 
     const draw = () => {
+        if (!analyser) return;
+
         const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
         analyser.getByteTimeDomainData(dataArray);
 
-        // Visual Layout
-        canvas.width = canvas.parentElement.clientWidth;
-        canvas.height = canvas.parentElement.clientHeight;
+        // resize the backing store only when the layout actually changed
+        const w = canvas.parentElement.clientWidth;
+        const h = canvas.parentElement.clientHeight;
+        if (canvas.width !== w) canvas.width = w;
+        if (canvas.height !== h) canvas.height = h;
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.lineWidth = 3;
         ctx.strokeStyle = '#3b82f6';
@@ -80,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < bufferLength; i++) {
             const v = dataArray[i] / 128.0;
             const y = v * canvas.height / 2;
-            
+
             const diff = Math.abs(1.0 - v);
             if (diff > peak) peak = diff;
 
@@ -92,14 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(canvas.width, canvas.height / 2);
         ctx.stroke();
 
-        // Update levels and Pulse UI
-        const level = peak; 
+        const level = peak;
         inputLevelVal.textContent = Math.round(level * 100) + '%';
         updateMaxVol(level);
-        
-        const scale = 1 + level * 0.4;
-        micPulse.style.transform = `scale(${scale})`;
-        micGlow.style.opacity = level * 2;
+
+        micPulse.style.transform = `scale(${1 + level * 0.4})`;
+        micGlow.style.opacity = Math.min(1, level * 2);
 
         animationId = requestAnimationFrame(draw);
     };

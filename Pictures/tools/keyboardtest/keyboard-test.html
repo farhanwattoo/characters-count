@@ -7,12 +7,32 @@
   <title>キーボードテスト (Keyboard Test) | オンラインで全キーの動作・ゴースト確認</title>
   <meta name="description"
     content="ブラウザで即座に使えるオンラインキーボードテスター (Online Keyboard Tester)。すべてのキー、同時押し（ゴーストテスト）、チャタリング、NKRO、入力遅延を視覚的に検出し、メカニカルキーボード等の正確な動作をチェック。">
+  <link rel="canonical" href="https://keyboardtest.com/keyboard-test.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Open Graph -->
   <meta property="og:title" content="キーボードテスト | リアルタイム・ハードウェア診断">
   <meta property="og:description" content="キー入力を瞬時に可視化。ダウンロード不要でキーボードの不具合をチェック。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://keyboardtest.com/keyboard-test.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://keyboardtest.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="キーボードテスト | リアルタイム・ハードウェア診断">
+  <meta name="twitter:description" content="キー入力を瞬時に可視化。ダウンロード不要でキーボードの不具合をチェック。">
+  <meta name="twitter:image" content="https://keyboardtest.com/og-image.png">
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -20,8 +40,10 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "オンラインキーボードテスター",
+      "url": "https://keyboardtest.com/keyboard-test.html",
       "operatingSystem": "Any",
-      "applicationCategory": "HardwareDiagnostics",
+      "applicationCategory": "UtilitiesApplication",
+      "inLanguage": "ja",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -29,7 +51,7 @@
       },
       "description": "キーボードのキー入力を視覚的に確認するための無料オンラインツールです。"
     }
-    </script>
+  </script>
 </head>
 
 <body>
@@ -47,6 +69,11 @@
   </header>
 
   <main>
+    <div class="page-title">
+      <h1>キーボードテスト</h1>
+      <p>キーを押すと下の仮想キーボードが点灯します。全キーの動作、同時押し（ゴースト）、チャタリングをその場で確認できます。</p>
+    </div>
+
     <section class="test-container" id="kb-test-area">
       <div class="status-bar">
         <div class="status-item">
@@ -65,149 +92,151 @@
           <span class="label">状態:</span>
           <span class="value" id="test-status" style="color: var(--accent);">待機中</span>
         </div>
-        <div class="status-item ghost-indicator" style="margin-left: auto;">
+        <div class="status-item push-right">
           <span class="label">同時押し数:</span>
           <span class="value" id="active-keys-count">0</span>
         </div>
       </div>
 
       <!-- Modern Keyboard Visualizer (JIS Layout Labels) -->
-      <div class="keyboard-layout" id="keyboard-visualizer">
-        <!-- Row 1: Function keys -->
-        <div class="kb-row">
-          <div class="kb-key" data-key="Escape">エスケープ</div>
-          <div style="width: 2rem;"></div>
-          <div class="kb-key" data-key="F1">F1</div>
-          <div class="kb-key" data-key="F2">F2</div>
-          <div class="kb-key" data-key="F3">F3</div>
-          <div class="kb-key" data-key="F4">F4</div>
-          <div style="width: 1rem;"></div>
-          <div class="kb-key" data-key="F5">F5</div>
-          <div class="kb-key" data-key="F6">F6</div>
-          <div class="kb-key" data-key="F7">F7</div>
-          <div class="kb-key" data-key="F8">F8</div>
-          <div style="width: 1rem;"></div>
-          <div class="kb-key" data-key="F9">F9</div>
-          <div class="kb-key" data-key="F10">F10</div>
-          <div class="kb-key" data-key="F11">F11</div>
-          <div class="kb-key" data-key="F12">F12</div>
-        </div>
+      <div class="keyboard-scroll">
+        <div class="keyboard-layout" id="keyboard-visualizer">
+          <!-- Row 1: Function keys -->
+          <div class="kb-row">
+            <div class="kb-key" data-key="Escape">Esc</div>
+            <div class="kb-gap-md"></div>
+            <div class="kb-key" data-key="F1">F1</div>
+            <div class="kb-key" data-key="F2">F2</div>
+            <div class="kb-key" data-key="F3">F3</div>
+            <div class="kb-key" data-key="F4">F4</div>
+            <div class="kb-gap-sm"></div>
+            <div class="kb-key" data-key="F5">F5</div>
+            <div class="kb-key" data-key="F6">F6</div>
+            <div class="kb-key" data-key="F7">F7</div>
+            <div class="kb-key" data-key="F8">F8</div>
+            <div class="kb-gap-sm"></div>
+            <div class="kb-key" data-key="F9">F9</div>
+            <div class="kb-key" data-key="F10">F10</div>
+            <div class="kb-key" data-key="F11">F11</div>
+            <div class="kb-key" data-key="F12">F12</div>
+          </div>
 
-        <!-- Row 2 -->
-        <div class="kb-row">
-          <div class="kb-key" data-key="Backquote">半角/全角</div>
-          <div class="kb-key" data-key="Digit1">1 ぬ</div>
-          <div class="kb-key" data-key="Digit2">2 ふ</div>
-          <div class="kb-key" data-key="Digit3">3 あ</div>
-          <div class="kb-key" data-key="Digit4">4 う</div>
-          <div class="kb-key" data-key="Digit5">5 え</div>
-          <div class="kb-key" data-key="Digit6">6 お</div>
-          <div class="kb-key" data-key="Digit7">7 や</div>
-          <div class="kb-key" data-key="Digit8">8 ゆ</div>
-          <div class="kb-key" data-key="Digit9">9 よ</div>
-          <div class="kb-key" data-key="Digit0">0 わ</div>
-          <div class="kb-key" data-key="Minus">ほ</div>
-          <div class="kb-key" data-key="Equal">へ</div>
-          <div class="kb-key" data-key="IntlYen">¥</div>
-          <div class="kb-key" data-key="Backspace" style="min-width: 4rem;">後退</div>
-        </div>
+          <!-- Row 2 -->
+          <div class="kb-row">
+            <div class="kb-key" data-key="Backquote">半/全</div>
+            <div class="kb-key" data-key="Digit1">1 ぬ</div>
+            <div class="kb-key" data-key="Digit2">2 ふ</div>
+            <div class="kb-key" data-key="Digit3">3 あ</div>
+            <div class="kb-key" data-key="Digit4">4 う</div>
+            <div class="kb-key" data-key="Digit5">5 え</div>
+            <div class="kb-key" data-key="Digit6">6 お</div>
+            <div class="kb-key" data-key="Digit7">7 や</div>
+            <div class="kb-key" data-key="Digit8">8 ゆ</div>
+            <div class="kb-key" data-key="Digit9">9 よ</div>
+            <div class="kb-key" data-key="Digit0">0 わ</div>
+            <div class="kb-key" data-key="Minus">- ほ</div>
+            <div class="kb-key" data-key="Equal">^ へ</div>
+            <div class="kb-key" data-key="IntlYen">¥</div>
+            <div class="kb-key" data-key="Backspace" style="min-width: 4rem;">BS</div>
+          </div>
 
-        <!-- Row 3 -->
-        <div class="kb-row">
-          <div class="kb-key" data-key="Tab" style="min-width: 4.5rem;">タブ</div>
-          <div class="kb-key" data-key="KeyQ">Q た</div>
-          <div class="kb-key" data-key="KeyW">W て</div>
-          <div class="kb-key" data-key="KeyE">E い</div>
-          <div class="kb-key" data-key="KeyR">R す</div>
-          <div class="kb-key" data-key="KeyT">T か</div>
-          <div class="kb-key" data-key="KeyY">Y ん</div>
-          <div class="kb-key" data-key="KeyU">U な</div>
-          <div class="kb-key" data-key="KeyI">I に</div>
-          <div class="kb-key" data-key="KeyO">O ら</div>
-          <div class="kb-key" data-key="KeyP">P せ</div>
-          <div class="kb-key" data-key="BracketLeft">@ ゛</div>
-          <div class="kb-key" data-key="BracketRight">[ ゜</div>
-          <div class="kb-key" data-key="Enter" style="min-width: 5rem; height: 100px; margin-bottom: -50px; position: relative; z-index: 10;">改行</div>
-        </div>
+          <!-- Row 3 -->
+          <div class="kb-row">
+            <div class="kb-key" data-key="Tab" style="min-width: 4.5rem;">Tab</div>
+            <div class="kb-key" data-key="KeyQ">Q た</div>
+            <div class="kb-key" data-key="KeyW">W て</div>
+            <div class="kb-key" data-key="KeyE">E い</div>
+            <div class="kb-key" data-key="KeyR">R す</div>
+            <div class="kb-key" data-key="KeyT">T か</div>
+            <div class="kb-key" data-key="KeyY">Y ん</div>
+            <div class="kb-key" data-key="KeyU">U な</div>
+            <div class="kb-key" data-key="KeyI">I に</div>
+            <div class="kb-key" data-key="KeyO">O ら</div>
+            <div class="kb-key" data-key="KeyP">P せ</div>
+            <div class="kb-key" data-key="BracketLeft">@ ゛</div>
+            <div class="kb-key" data-key="BracketRight">[ ゜</div>
+            <div class="kb-key kb-key-enter" data-key="Enter">Enter</div>
+          </div>
 
-        <!-- Row 4 -->
-        <div class="kb-row">
-          <div class="kb-key" data-key="CapsLock" style="min-width: 5.5rem;">英数</div>
-          <div class="kb-key" data-key="KeyA">A ち</div>
-          <div class="kb-key" data-key="KeyS">S と</div>
-          <div class="kb-key" data-key="KeyD">D し</div>
-          <div class="kb-key" data-key="KeyF">F は</div>
-          <div class="kb-key" data-key="KeyG">G き</div>
-          <div class="kb-key" data-key="KeyH">H く</div>
-          <div class="kb-key" data-key="KeyJ">J ま</div>
-          <div class="kb-key" data-key="KeyK">K の</div>
-          <div class="kb-key" data-key="KeyL">L り</div>
-          <div class="kb-key" data-key="Semicolon">; れ</div>
-          <div class="kb-key" data-key="Quote">: け</div>
-          <div class="kb-key" data-key="Backslash">] む</div>
-        </div>
+          <!-- Row 4 -->
+          <div class="kb-row">
+            <div class="kb-key" data-key="CapsLock" style="min-width: 5.5rem;">英数</div>
+            <div class="kb-key" data-key="KeyA">A ち</div>
+            <div class="kb-key" data-key="KeyS">S と</div>
+            <div class="kb-key" data-key="KeyD">D し</div>
+            <div class="kb-key" data-key="KeyF">F は</div>
+            <div class="kb-key" data-key="KeyG">G き</div>
+            <div class="kb-key" data-key="KeyH">H く</div>
+            <div class="kb-key" data-key="KeyJ">J ま</div>
+            <div class="kb-key" data-key="KeyK">K の</div>
+            <div class="kb-key" data-key="KeyL">L り</div>
+            <div class="kb-key" data-key="Semicolon">; れ</div>
+            <div class="kb-key" data-key="Quote">: け</div>
+            <div class="kb-key" data-key="Backslash">] む</div>
+          </div>
 
-        <!-- Row 5 -->
-        <div class="kb-row">
-          <div class="kb-key" data-key="ShiftLeft" style="min-width: 6.5rem;">シフト</div>
-          <div class="kb-key" data-key="KeyZ">Z つ</div>
-          <div class="kb-key" data-key="KeyX">X さ</div>
-          <div class="kb-key" data-key="KeyC">C そ</div>
-          <div class="kb-key" data-key="KeyV">V ひ</div>
-          <div class="kb-key" data-key="KeyB">B こ</div>
-          <div class="kb-key" data-key="KeyN">N み</div>
-          <div class="kb-key" data-key="KeyM">M も</div>
-          <div class="kb-key" data-key="Comma">, ね</div>
-          <div class="kb-key" data-key="Period">. る</div>
-          <div class="kb-key" data-key="Slash">/ め</div>
-          <div class="kb-key" data-key="IntlRo">\ ろ</div>
-          <div class="kb-key" data-key="ShiftRight" style="min-width: 6.5rem;">シフト</div>
-        </div>
+          <!-- Row 5 -->
+          <div class="kb-row">
+            <div class="kb-key" data-key="ShiftLeft" style="min-width: 6.5rem;">Shift</div>
+            <div class="kb-key" data-key="KeyZ">Z つ</div>
+            <div class="kb-key" data-key="KeyX">X さ</div>
+            <div class="kb-key" data-key="KeyC">C そ</div>
+            <div class="kb-key" data-key="KeyV">V ひ</div>
+            <div class="kb-key" data-key="KeyB">B こ</div>
+            <div class="kb-key" data-key="KeyN">N み</div>
+            <div class="kb-key" data-key="KeyM">M も</div>
+            <div class="kb-key" data-key="Comma">, ね</div>
+            <div class="kb-key" data-key="Period">. る</div>
+            <div class="kb-key" data-key="Slash">/ め</div>
+            <div class="kb-key" data-key="IntlRo">\ ろ</div>
+            <div class="kb-key" data-key="ShiftRight" style="min-width: 6.5rem;">Shift</div>
+          </div>
 
-        <!-- Row 6: Modifier keys and Space -->
-        <div class="kb-row">
-          <div class="kb-key" data-key="ControlLeft">コントロール</div>
-          <div class="kb-key" data-key="MetaLeft">メニュー</div>
-          <div class="kb-key" data-key="AltLeft">オルト</div>
-          <div class="kb-key" data-key="NonConvert">無変換</div>
-          <div class="kb-key" data-key="Space" style="min-width: 10rem;">スペース</div>
-          <div class="kb-key" data-key="Convert">変換</div>
-          <div class="kb-key" data-key="KanaMode">カタカナ</div>
-          <div class="kb-key" data-key="AltRight">オルト</div>
-          <div class="kb-key" data-key="ControlRight">コントロール</div>
-        </div>
+          <!-- Row 6: Modifier keys and Space -->
+          <div class="kb-row">
+            <div class="kb-key" data-key="ControlLeft">Ctrl</div>
+            <div class="kb-key" data-key="MetaLeft">Win</div>
+            <div class="kb-key" data-key="AltLeft">Alt</div>
+            <div class="kb-key" data-key="NonConvert">無変換</div>
+            <div class="kb-key" data-key="Space" style="min-width: 10rem;">スペース</div>
+            <div class="kb-key" data-key="Convert">変換</div>
+            <div class="kb-key" data-key="KanaMode">かな</div>
+            <div class="kb-key" data-key="AltRight">Alt</div>
+            <div class="kb-key" data-key="ControlRight">Ctrl</div>
+          </div>
 
-        <!-- Navigation & Arrow Cluster -->
-        <div class="kb-row" style="margin-top: 1rem;">
-          <div class="kb-key" data-key="Insert">挿入</div>
-          <div class="kb-key" data-key="Home">ホーム</div>
-          <div class="kb-key" data-key="PageUp">ページ上</div>
-          <div style="width: 2rem;"></div>
-          <div style="width: 3.5rem;"></div>
-          <div class="kb-key" data-key="ArrowUp">↑</div>
-          <div style="width: 3.5rem;"></div>
-        </div>
-        <div class="kb-row">
-          <div class="kb-key" data-key="Delete">削除</div>
-          <div class="kb-key" data-key="End">エンド</div>
-          <div class="kb-key" data-key="PageDown">ページ下</div>
-          <div style="width: 2rem;"></div>
-          <div class="kb-key" data-key="ArrowLeft">←</div>
-          <div class="kb-key" data-key="ArrowDown">↓</div>
-          <div class="kb-key" data-key="ArrowRight">→</div>
-        </div>
-      </div>
-      <div style="margin-top: 3rem; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
-        <div class="history-container" style="flex: 1; min-width: 300px; background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; text-align: left;">
-          <h4 style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">入力履歴 (Event Log):</h4>
-          <div id="key-history" style="height: 150px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; color: var(--accent);">
-            <!-- History items will appear here -->
-            <div style="color: var(--text-muted);">ここに入力履歴が表示されます...</div>
+          <!-- Navigation & Arrow Cluster -->
+          <div class="kb-row" style="margin-top: 1rem;">
+            <div class="kb-key" data-key="Insert">Ins</div>
+            <div class="kb-key" data-key="Home">Home</div>
+            <div class="kb-key" data-key="PageUp">PgUp</div>
+            <div class="kb-gap-md"></div>
+            <div class="kb-gap-key"></div>
+            <div class="kb-key" data-key="ArrowUp">↑</div>
+            <div class="kb-gap-key"></div>
+          </div>
+          <div class="kb-row">
+            <div class="kb-key" data-key="Delete">Del</div>
+            <div class="kb-key" data-key="End">End</div>
+            <div class="kb-key" data-key="PageDown">PgDn</div>
+            <div class="kb-gap-md"></div>
+            <div class="kb-key" data-key="ArrowLeft">←</div>
+            <div class="kb-key" data-key="ArrowDown">↓</div>
+            <div class="kb-key" data-key="ArrowRight">→</div>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
+      </div>
+
+      <div class="kb-panels">
+        <div class="history-container">
+          <h2>入力履歴 (Event Log)</h2>
+          <div id="key-history" class="history-log">
+            <div class="placeholder">ここに入力履歴が表示されます...</div>
+          </div>
+        </div>
+        <div class="kb-actions">
           <button class="btn btn-primary" id="reset-keyboard">テスト状態をリセット</button>
-          <button class="btn" id="clear-history" style="background: rgba(255,255,255,0.1); color: var(--text-main);">履歴をクリア</button>
+          <button class="btn btn-secondary" id="clear-history">履歴をクリア</button>
         </div>
       </div>
     </section>
@@ -224,7 +253,7 @@
         <p>
           複数のキーを同時に押したときに正しく反応するかをチェックする<strong>ゴーストテスト (Keyboard Ghosting Test)</strong> にも完全対応。W-A-S-DやShift、Spaceキーなどを同時に押して、仮想キーボードがすべて青く光るかチェックしてください。<strong>Nキーロールオーバー (NKRO)</strong> 対応のキーボードであれば、理論上すべてのキーを同時に検出可能です。
         </p>
-        
+
         <h3>チャタリング現象の検出</h3>
         <p>
           一度しか押していないのに二重入力される場合、それは<strong>チャタリング (Chattering)</strong> かもしれません。メカニカルキーボードのスイッチ寿命や内部のホコリが原因であることが多いです。当ツールで特定のキーが過剰に反応していないかリアルタイムで監視し、不具合の特定に役立ててください。
@@ -235,6 +264,11 @@
           <li><strong>キーが反応しない場合:</strong> USBの接触不良、内部の物理的な故障、あるいはドライバの競合が考えられます。</li>
           <li><strong>Fキーや特殊キーが動かない:</strong> ブラウザのショートカットキーと競合している場合があります。当ツールは一部の競合を回避しますが、システムショートカット（Alt+F4等）はOS側で優先されます。</li>
         </ul>
+
+        <aside class="related-guide">
+          <h3>関連ガイド</h3>
+          <p><a href="guides/keyboard-ghosting.html">キーボードのゴースト（ゴースティング）とは？</a> — ゴーストが発生する電気的な仕組みと、NKROキーボードの選び方を詳しく解説しています。</p>
+        </aside>
       </div>
     </article>
   </main>
@@ -247,8 +281,9 @@
       <a href="mic-test.html">マイク</a>
       <a href="speaker-test.html">スピーカー</a>
       <a href="speed-test.html">速度テスト</a>
+      <a href="guides/keyboard-ghosting.html">ゴースト解説ガイド</a>
     </div>
-    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+    <p class="footer-copy">&copy; 2026 DeviceTester 診断スイート.</p>
   </footer>
 
   <script src="keyboard-script.js"></script>
