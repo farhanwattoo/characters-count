@@ -1,83 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What is Keyboard Ghosting? | Online Diagnostic Guide</title>
+  <title>キーボードのゴースト（ゴースティング）とは？仕組みとNKROの確認方法</title>
   <meta name="description"
-    content="Learn the technical cause of keyboard ghosting, how it affects gaming performance, and how to test your hardware for N-key rollover (NKRO) for free.">
+    content="キーボードのゴースト（ゴースティング）が発生する電気的な仕組み、ゲームへの影響、そしてNキーロールオーバー (NKRO) を無料でテストする方法を分かりやすく解説します。">
+  <link rel="canonical" href="https://keyboardtest.com/guides/keyboard-ghosting.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="../styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="キーボードのゴースト（ゴースティング）とは？仕組みとNKROの確認方法">
+  <meta property="og:description" content="ゴーストが発生する電気的な仕組みと、NKROキーボードの選び方・テスト方法を解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://keyboardtest.com/guides/keyboard-ghosting.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://keyboardtest.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="キーボードのゴースト（ゴースティング）とは？">
+  <meta name="twitter:description" content="ゴーストが発生する電気的な仕組みと、NKROキーボードの選び方・テスト方法を解説。">
+  <meta name="twitter:image" content="https://keyboardtest.com/og-image.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "キーボードのゴースト（ゴースティング）とは？仕組みとNKROの確認方法",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://keyboardtest.com/guides/keyboard-ghosting.html",
+      "image": "https://keyboardtest.com/og-image.png",
+      "author": {
+        "@type": "Organization",
+        "name": "DeviceTester"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "DeviceTester"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "ホーム",
+          "item": "https://keyboardtest.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "キーボードテスト",
+          "item": "https://keyboardtest.com/keyboard-test.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "キーボードのゴーストとは？",
+          "item": "https://keyboardtest.com/guides/keyboard-ghosting.html"
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ソフトウェアでゴーストは直せますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。ゴーストは電気回路（マトリクス）の物理的な制約によるものです。根本的に解決するには、NKRO対応のキーボードへの買い替えが必要です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "メカニカルキーボードならゴーストは発生しませんか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "必ずしもそうではありません。最近のメカニカルキーボードの多くはNKROに対応していますが、廉価モデルでは制限付きのマトリクスを使っている場合があります。製品仕様の「アンチゴースト」や「NKRO」表記を必ず確認してください。"
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
   <header>
     <a href="../index.html" class="brand">
-      <span>HardwareTest</span>
+      <span>DeviceTester</span>
     </a>
-    <nav aria-label="Main Navigation">
-      <a href="../keyboard-test.html">Keyboard</a>
-      <a href="../mouse-test.html">Mouse</a>
-      <a href="../mic-test.html">Microphone</a>
-      <a href="../speaker-test.html">Speakers</a>
+    <nav aria-label="メインナビゲーション">
+      <a href="../keyboard-test.html">キーボード</a>
+      <a href="../mouse-test.html">マウス</a>
+      <a href="../mic-test.html">マイク</a>
+      <a href="../speaker-test.html">スピーカー</a>
+      <a href="../speed-test.html">速度テスト</a>
     </nav>
   </header>
 
   <main>
-    <article class="seo-content" style="padding-top: 2rem;">
-      <h1>What is Keyboard Ghosting? A Technical Deep Dive</h1>
-      <p>
-        In competitive gaming, every millisecond and every input counts. <strong>Keyboard ghosting</strong> is an architectural limitation in many consumer-grade keyboards that causes certain keys to fail when multiple keys are pressed simultaneously.
-      </p>
+    <article class="seo-section" style="margin-top: 0;">
+      <div class="seo-content">
+        <h1>キーボードのゴースト（ゴースティング）とは？</h1>
+        <p>
+          対戦ゲームでは、1ミリ秒と1入力のすべてが勝敗を分けます。<strong>キーボードのゴースト（ゴースティング）</strong>とは、複数のキーを同時に押したときに一部のキー入力が認識されなくなる、多くの一般向けキーボードが抱える構造上の制約です。
+        </p>
 
-      <h2>The Electrical Matrix Problem</h2>
-      <p>
-        Most keyboards use a grid-based "matrix" for their electrical circuits. When you press a key, you complete a circuit at a specific X-Y intersection. However, when you press three or more keys (e.g., W, A, and Shift), the current can follow a parallel path, making it impossible for the controller to distinguish which third key was actually pressed.
-      </p>
+        <h2>電気回路「マトリクス」の問題</h2>
+        <p>
+          ほとんどのキーボードは、格子状の「マトリクス」回路を使っています。キーを押すと特定のX-Y交点の回路が閉じて入力が検出されます。しかし3つ以上のキー（例: W、A、Shift）を同時に押すと、電流が並列の経路を通ってしまい、コントローラーが「3つ目にどのキーが押されたのか」を区別できなくなることがあります。
+        </p>
 
-      <h2>Symptoms of Ghosting</h2>
-      <ul>
-        <li>A keypress is ignored during intense activity.</li>
-        <li>Your character stops moving when you try to strafe and crouch simultaneously.</li>
-        <li>A "beep" sound from your system indicating an input overflow.</li>
-      </ul>
+        <h2>ゴーストの症状</h2>
+        <ul>
+          <li>激しい操作中にキー入力が無視される。</li>
+          <li>斜め移動としゃがみを同時に入力するとキャラクターが止まる。</li>
+          <li>入力オーバーフローを示す「ビープ音」がシステムから鳴る。</li>
+        </ul>
 
-      <h3>How to Test for Ghosting</h3>
-      <p>
-        The easiest way to verify if your hardware is ghost-free is to use our <a href="../keyboard-test.html">online keyboard ghosting test</a>. Simply hold down your primary gaming keys (WASD, Space, Shift, Ctrl) and see if all of them light up on the virtual display.
-      </p>
+        <h3>ゴーストのテスト方法</h3>
+        <p>
+          お使いのキーボードがゴーストフリーかどうかを確認する最も簡単な方法は、当サイトの<a href="../keyboard-test.html">オンライン・キーボードゴーストテスト</a>を使うことです。ゲームでよく使うキー（W・A・S・D、Space、Shift、Ctrl）を同時に押し続けて、仮想キーボード上ですべてのキーが点灯するか確認してください。
+        </p>
 
-      <h3>What is N-Key Rollover (NKRO)?</h3>
-      <p>
-        High-performance gaming keyboards feature <strong>NKRO</strong>, which means the controller has a dedicated diode for every single key. This prevents "signal crosstalk" and allows you to press as many keys as you want simultaneously with 0% ghosting.
-      </p>
+        <h3>Nキーロールオーバー (NKRO) とは？</h3>
+        <p>
+          高性能なゲーミングキーボードは<strong>NKRO</strong>に対応しています。これは各キーに専用のダイオードを備えることで「信号の混線」を防ぎ、何個のキーを同時に押してもゴーストを0%に抑えられる仕組みです。
+        </p>
 
-      <section class="faq-grid">
-        <div class="faq-item">
-          <h4>Can software fix keyboard ghosting?</h4>
-          <p>No. Ghosting is a physical hardware limitation of the electrical matrix. To fix it, you generally need to upgrade to a mechanical keyboard with NKRO support.</p>
+        <section class="faq-grid">
+          <div class="faq-item">
+            <h4>ソフトウェアでゴーストは直せますか？</h4>
+            <p>いいえ。ゴーストは電気回路（マトリクス）の物理的な制約によるものです。根本的に解決するには、NKRO対応のキーボードへの買い替えが必要です。</p>
+          </div>
+          <div class="faq-item">
+            <h4>メカニカルキーボードならゴーストは発生しませんか？</h4>
+            <p>必ずしもそうではありません。最近のメカニカルキーボードの多くはNKROに対応していますが、廉価モデルでは制限付きのマトリクスを使っている場合があります。製品仕様の「アンチゴースト」や「NKRO」表記を必ず確認してください。</p>
+          </div>
+        </section>
+
+        <div style="margin-top: 4rem; text-align: center;">
+          <a href="../keyboard-test.html" class="btn btn-primary">今すぐゴーストテストを試す</a>
         </div>
-        <div class="faq-item">
-          <h4>Are mechanical keyboards ghost-free?</h4>
-          <p>Not necessarily. While most modern mechanical keyboards support NKRO, some budget models still use a limited matrix. Always check the product specifications for "Anti-Ghosting" or "NKRO."</p>
-        </div>
-      </section>
-
-      <div style="margin-top: 4rem; text-align: center;">
-        <a href="../keyboard-test.html" class="btn btn-primary">Try our Ghosting Test Now</a>
       </div>
     </article>
   </main>
 
   <footer>
     <div class="footer-nav">
-      <a href="../index.html">Home</a>
-      <a href="../keyboard-test.html">Keyboard Test</a>
-      <a href="../mouse-test.html">Mouse Test</a>
-      <a href="../mic-test.html">Mic Test</a>
-      <a href="../speaker-test.html">Speaker Test</a>
+      <a href="../index.html">ホーム</a>
+      <a href="../keyboard-test.html">キーボード</a>
+      <a href="../mouse-test.html">マウス</a>
+      <a href="../mic-test.html">マイク</a>
+      <a href="../speaker-test.html">スピーカー</a>
+      <a href="../speed-test.html">速度テスト</a>
     </div>
-    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 HardwareTest Diagnostics.</p>
+    <p class="footer-copy">&copy; 2026 DeviceTester 診断スイート.</p>
   </footer>
 
 </body>

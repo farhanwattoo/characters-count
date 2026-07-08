@@ -7,12 +7,32 @@
   <title>マウステスト | クリック、スクロール、ポーリングレートの確認</title>
   <meta name="description"
     content="ブラウザでマウスの動作を精密にテスト。左右・中央クリック、スクロール、そしてゲーミングマウスで重要なポーリングレートをリアルタイムで測定・可視化します。">
+  <link rel="canonical" href="https://keyboardtest.com/mouse-test.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Open Graph -->
   <meta property="og:title" content="マウステスト | リアルタイム・ハードウェア診断">
   <meta property="og:description" content="マウスクリックや移動の精度を瞬時に確認。無料のオンラインマウス診断。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://keyboardtest.com/mouse-test.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://keyboardtest.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="マウステスト | リアルタイム・ハードウェア診断">
+  <meta name="twitter:description" content="マウスクリックや移動の精度を瞬時に確認。無料のオンラインマウス診断。">
+  <meta name="twitter:image" content="https://keyboardtest.com/og-image.png">
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -20,8 +40,10 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "オンラインマウステスター",
+      "url": "https://keyboardtest.com/mouse-test.html",
       "operatingSystem": "Any",
-      "applicationCategory": "HardwareDiagnostics",
+      "applicationCategory": "UtilitiesApplication",
+      "inLanguage": "ja",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -29,7 +51,31 @@
       },
       "description": "マウスのクリックやスクロール、ポーリングレートを視覚的に確認するための無料オンラインツールです。"
     }
-    </script>
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "適切なポーリングレートは？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "通常の用途では125Hz〜250Hzで十分ですが、対人ゲームでは500Hz〜1000Hz以上が推奨されます。これにより入力遅延（ラグ）が最小限になります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "チャタリングの原因は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "主にスイッチ接点の摩耗や、静電気の蓄積、ソフト側の不具合が原因です。一度マウスをパソコンから外して、ボタンを連打して静電気を逃がすと改善することもあります。"
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
@@ -47,6 +93,11 @@
   </header>
 
   <main>
+    <div class="page-title">
+      <h1>マウステスト</h1>
+      <p>クリック・スクロール・ポーリングレートをその場で確認。ボタンを押すと下のマウス図が点灯します。</p>
+    </div>
+
     <section class="test-container" id="mouse-test-area">
       <div class="status-bar">
         <div class="status-item">
@@ -68,37 +119,37 @@
       </div>
 
       <!-- Mouse Visualizer -->
-      <div style="display: flex; gap: 4rem; flex-wrap: wrap; justify-content: center; align-items: flex-start; margin-top: 2rem;">
-        <div class="mouse-svg-container" style="position: relative;">
-          <svg width="200" height="320" viewBox="0 0 200 320" style="filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));">
+      <div class="mouse-flex">
+        <div class="mouse-svg-container">
+          <svg width="200" height="320" viewBox="0 0 200 320" role="img" aria-label="マウスの図。クリックしたボタンが点灯します" style="filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));">
             <!-- Mouse Body -->
             <path id="mouse-body" d="M100 0 C45 0 0 45 0 100 L0 220 C0 275 45 320 100 320 C155 320 200 275 200 220 L200 100 C200 45 155 0 100 0 Z" fill="#1e293b" stroke="#334155" stroke-width="2"/>
-            
+
             <!-- Mouse Buttons -->
             <path id="mouse-left" d="M10 100 C10 55 50 15 95 15 L95 140 L10 140 Z" fill="#243447" style="transition: all 0.1s;"/>
             <path id="mouse-right" d="M105 15 C150 15 190 55 190 100 L190 140 L105 140 Z" fill="#243447" style="transition: all 0.1s;"/>
-            
+
             <!-- Mouse Scroll Wheel -->
             <rect id="mouse-middle" x="90" y="40" width="20" height="50" rx="8" fill="#334155" style="transition: all 0.1s;"/>
-            
+
             <!-- Indicators Layer -->
-            <text x="50" y="90" fill="#94a3b8" font-size="20" font-family="Lexend" text-anchor="middle" pointer-events="none">L</text>
-            <text x="150" y="90" fill="#94a3b8" font-size="20" font-family="Lexend" text-anchor="middle" pointer-events="none">R</text>
-            <text x="100" y="220" fill="#94a3b8" font-size="24" font-family="Noto Sans JP" text-anchor="middle" pointer-events="none">中央</text>
+            <text x="50" y="90" fill="#94a3b8" font-size="20" font-family="Lexend, sans-serif" text-anchor="middle" pointer-events="none">L</text>
+            <text x="150" y="90" fill="#94a3b8" font-size="20" font-family="Lexend, sans-serif" text-anchor="middle" pointer-events="none">R</text>
+            <text x="100" y="220" fill="#94a3b8" font-size="24" font-family="'Noto Sans JP', sans-serif" text-anchor="middle" pointer-events="none">中央</text>
           </svg>
         </div>
 
         <!-- Real-Time Input Monitor -->
-        <div style="flex: 1; min-width: 300px; background: rgba(0,0,0,0.2); border-radius: 1.5rem; padding: 2rem;">
-          <h3 style="margin-bottom: 1rem; color: var(--primary);">入力信号モニター</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">キャンバス上でマウスを動かして、信号の頻度とレスポンスの一貫性をチェックしてください。</p>
-          <div id="polling-canvas-container" style="height: 15rem; background: #0f172a; border-radius: 1rem; border: 1px solid var(--card-border); position: relative; overflow: hidden;">
-            <canvas id="polling-graph" style="width: 100%; height: 100%;"></canvas>
+        <div class="mouse-monitor panel">
+          <h2>入力信号モニター</h2>
+          <p class="hint">キャンバス上でマウスを動かして、信号の頻度とレスポンスの一貫性をチェックしてください。</p>
+          <div class="polling-canvas-container" id="polling-canvas-container">
+            <canvas id="polling-graph" aria-label="ポーリングレートのリアルタイムグラフ"></canvas>
           </div>
         </div>
       </div>
 
-      <div style="margin-top: 3rem; text-align: center;">
+      <div class="test-controls">
         <button class="btn btn-primary" id="reset-mouse">カウンターをリセット</button>
       </div>
     </section>
@@ -106,7 +157,7 @@
     <!-- Detailed SEO Article Section -->
     <article class="seo-section">
       <div class="seo-content">
-        <h2>マスのチャタリング（二重クリック）と精度の検証</h2>
+        <h2>マウスのチャタリング（二重クリック）と精度の検証</h2>
         <p>
           プロのデザイナーやゲーマーにとって、マウスの精度は命です。長年使っているとマウススイッチが劣化し、一度のクリックが二度押されたように反応する<strong>「チャタリング」現象</strong>が発生することがあります。
         </p>
@@ -115,7 +166,7 @@
         <p>
           当サイトの<strong>マウステスト</strong>では、マウスがPCに位置情報を送る頻度である「ポーリングレート（Hz）」を可視化できます。一般的な事務用マウスは125Hz程度、高性能ゲーミングマウスは1000Hz以上を目指します。安定した数値が出ているか確認しましょう。
         </p>
-        
+
         <h3>トラブルシューティング</h3>
         <ul>
           <li><strong>二重クリック（チャタリング）:</strong> 右上のクリック数カウンターが一度の操作で「2」増える場合、接点の劣化が疑われます。</li>
@@ -143,8 +194,9 @@
       <a href="mouse-test.html">マウス</a>
       <a href="mic-test.html">マイク</a>
       <a href="speaker-test.html">スピーカー</a>
+      <a href="speed-test.html">速度テスト</a>
     </div>
-    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+    <p class="footer-copy">&copy; 2026 DeviceTester 診断スイート.</p>
   </footer>
 
   <script src="mouse-script.js"></script>

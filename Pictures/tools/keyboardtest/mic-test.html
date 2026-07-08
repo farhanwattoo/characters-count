@@ -7,12 +7,32 @@
   <title>マイクテスト | 明瞭度、音量、ノイズのオンライン確認</title>
   <meta name="description"
     content="ブラウザで即座にマイクの明瞭度を確認。音量レベルの可視化とオシロスコープによる信号解析で、ビデオ会議やストリーミング前の音声チェックに最適です。">
+  <link rel="canonical" href="https://keyboardtest.com/mic-test.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Open Graph -->
   <meta property="og:title" content="マイクテスト | リアルタイム・音声ハードウェア診断">
   <meta property="og:description" content="あなたの声はクリアに聞こえていますか？無料のマイク音質チェック。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://keyboardtest.com/mic-test.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://keyboardtest.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="マイクテスト | リアルタイム・音声ハードウェア診断">
+  <meta name="twitter:description" content="あなたの声はクリアに聞こえていますか？無料のマイク音質チェック。">
+  <meta name="twitter:image" content="https://keyboardtest.com/og-image.png">
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -20,8 +40,10 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "オンラインマイクテスター",
+      "url": "https://keyboardtest.com/mic-test.html",
       "operatingSystem": "Any",
-      "applicationCategory": "HardwareDiagnostics",
+      "applicationCategory": "UtilitiesApplication",
+      "inLanguage": "ja",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -29,7 +51,31 @@
       },
       "description": "マイクの音量と波形を視覚的に表示して動作確認を行う無料ツールです。"
     }
-    </script>
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "エコーを防ぐには？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "スピーカーからの音がマイクに入るとエコーが発生します。ヘッドセットを使用するか、エコーキャンセル機能を有効にしてください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ノイズがひどい時は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "充電中のラップトップだとノイズが乗る場合があります。また、マイクのケーブルがノイズを拾いやすいこともあるため、別のUSBポートを試してください。"
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
@@ -47,6 +93,11 @@
   </header>
 
   <main>
+    <div class="page-title">
+      <h1>マイクテスト</h1>
+      <p>「テストを開始」を押してマイクへのアクセスを許可すると、音量レベルと波形がリアルタイムに表示されます。</p>
+    </div>
+
     <section class="test-container" id="mic-test-area">
       <div class="status-bar">
         <div class="status-item">
@@ -64,21 +115,21 @@
       </div>
 
       <!-- Mic Pulse and Oscilloscope -->
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 0;">
-        <div id="mic-pulse" style="width: 15rem; height: 15rem; background: var(--card-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; border: 4px solid var(--card-border); transition: all 0.1s; overflow: hidden;">
-          <div id="mic-glow" style="position: absolute; width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 50px var(--primary-glow); opacity: 0; transition: opacity 0.1s;"></div>
-          <span style="font-size: 5rem; z-index: 1;">🎙️</span>
+      <div class="mic-stage">
+        <div id="mic-pulse" class="mic-pulse">
+          <div id="mic-glow" class="mic-glow"></div>
+          <span class="mic-emoji" aria-hidden="true">🎙️</span>
         </div>
 
-        <div style="width: 100%; max-width: 800px; height: 12rem; background: rgba(0,0,0,0.3); border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--card-border);">
-          <canvas id="oscilloscope" style="width: 100%; height: 100%;"></canvas>
+        <div class="osc-wrap">
+          <canvas id="oscilloscope" aria-label="マイク入力のオシロスコープ波形"></canvas>
         </div>
 
-        <div style="display: flex; gap: 1.5rem;">
-          <button class="btn btn-primary" id="start-mic" style="font-size: 1.1rem; padding: 1rem 2rem;">テストを開始</button>
-          <button class="btn" id="stop-mic" style="background: var(--card-border); color: var(--text-muted);">終了</button>
+        <div class="test-controls" style="margin-top: 0;">
+          <button class="btn btn-primary" id="start-mic">テストを開始</button>
+          <button class="btn btn-secondary" id="stop-mic">終了</button>
         </div>
-        <p id="mic-error" style="color: var(--danger); font-size: 0.9rem; display: none;">エラー: マイクへのアクセスが拒否されたか、デバイスが見つかりませんでした。</p>
+        <p id="mic-error" class="error-msg" role="alert">エラー: マイクへのアクセスが拒否されたか、デバイスが見つかりませんでした。</p>
       </div>
     </section>
 
@@ -94,7 +145,7 @@
         <p>
           オシロスコープ機能により、単なる音量だけでなく「波形」として声を捉えます。波形が上下に張り付いている場合は音量が大きすぎ（クリッピング）、平坦すぎる場合はゲインが低すぎます。
         </p>
-        
+
         <h3>トラブルシューティングガイド</h3>
         <ul>
           <li><strong>マイクが認識されない場合:</strong> ブラウザの左上の鍵アイコンをクリックして、マイクのアクセス許可が「オン」になっているか確認してください。</li>
@@ -122,8 +173,9 @@
       <a href="mouse-test.html">マウス</a>
       <a href="mic-test.html">マイク</a>
       <a href="speaker-test.html">スピーカー</a>
+      <a href="speed-test.html">速度テスト</a>
     </div>
-    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート.</p>
+    <p class="footer-copy">&copy; 2026 DeviceTester 診断スイート.</p>
   </footer>
 
   <script src="mic-script.js"></script>

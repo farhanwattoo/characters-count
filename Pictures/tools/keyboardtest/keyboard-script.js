@@ -52,9 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const verifiedKeys = new Set();
 
     function addHistoryLine(code, name) {
-        if (keyHistory.children[0] && keyHistory.children[0].style.color === 'var(--text-muted)') {
-            keyHistory.innerHTML = '';
-        }
+        const placeholder = keyHistory.querySelector('.placeholder');
+        if (placeholder) placeholder.remove();
         const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', fractionalSecondDigits: 2 });
         const line = document.createElement('div');
         line.innerHTML = `<span style="color: var(--text-muted)">[${time}]</span> ${name} (${code}) <span style="color: var(--primary)">Down</span>`;
@@ -80,8 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const onKeyDown = (e) => {
-        // Prevent default for keys that interfere with testing, but keep Ctrl/Cmd for shortcuts
-        const forbiddenKeys = ['F1', 'F3', 'F5', 'F6', 'F7', 'F10', 'F11', 'F12', 'Tab', 'AltLeft', 'AltRight', 'ContextMenu'];
+        // Prevent default for keys that interfere with testing (browser shortcuts,
+        // page scrolling), but keep Ctrl/Cmd combos usable
+        const forbiddenKeys = ['F1', 'F3', 'F5', 'F6', 'F7', 'F10', 'F11', 'F12', 'Tab', 'AltLeft', 'AltRight', 'ContextMenu',
+            'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End'];
         if (forbiddenKeys.includes(e.code)) {
             e.preventDefault();
         }
@@ -134,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     clearHistoryBtn.addEventListener('click', () => {
-        keyHistory.innerHTML = '<div style="color: var(--text-muted);">ここに入力履歴が表示されます...</div>';
+        keyHistory.innerHTML = '<div class="placeholder">ここに入力履歴が表示されます...</div>';
     });
 
     window.addEventListener('blur', () => {

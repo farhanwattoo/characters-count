@@ -4,17 +4,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>デバイス診断ツールキット | キーボード、マウス、マイク、スピーカーのテスト</title>
+  <title>デバイス診断ツールキット | キーボード・マウス・マイク・スピーカーを無料テスト</title>
   <meta name="description"
     content="インストール不要、ブラウザで即座に使えるハードウェア診断ツール。キーボードの反応、マウスの精度、マイクの明瞭度、スピーカーのバランスを完全無料でテストできます。">
-  <meta name="keywords"
-    content="キーボードテスト, マウステスト, マイクテスト, スピーカーテスト, ネット速度テスト, デバイス診断, 無料ツール">
+  <link rel="canonical" href="https://keyboardtest.com/">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Open Graph -->
   <meta property="og:title" content="デバイス診断ツールキット | オンライン・ハードウェア・チェック">
   <meta property="og:description" content="ブラウザでデバイスの動作を確認。キーボード、マウス、音声を即座にテスト可能。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://keyboardtest.com/">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://keyboardtest.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="デバイス診断ツールキット | オンライン・ハードウェア・チェック">
+  <meta name="twitter:description" content="ブラウザでデバイスの動作を確認。キーボード、マウス、音声を即座にテスト可能。">
+  <meta name="twitter:image" content="https://keyboardtest.com/og-image.png">
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -22,14 +40,43 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "デバイス診断ツールキット",
-      "url": "https://keyboardtest.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://keyboardtest.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "alternateName": "DeviceTester",
+      "url": "https://keyboardtest.com/",
+      "inLanguage": "ja"
     }
-    </script>
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "なぜデバイスをテストする必要があるのですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "目に見えない摩耗やソフトウェアの不具合により、入力が欠けたり音が歪んだりすることがあります。定期的なチェックでトラブルを未然に防げます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ブラウザでテストしても安全ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。当サイトは最新のWeb API（Web Audio、Gamepad等）を使い、OSと安全に通信します。個人情報の収集は一切行いません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MacやAndroid、iPhoneでも使えますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。ブラウザ上で動作するため、Windows、macOS、Android、iOSなど、最新のブラウザが動くすべての端末で利用可能です。"
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
@@ -42,53 +89,53 @@
       <a href="mouse-test.html">マウス</a>
       <a href="mic-test.html">マイク</a>
       <a href="speaker-test.html">スピーカー</a>
-      <a href="speed-test.html">スピードテスト</a>
+      <a href="speed-test.html">速度テスト</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>オンライン・デバイス診断キット</h1>
+      <h1>オンライン・デバイス診断ツールキット</h1>
       <p>周辺機器のパフォーマンスを即座に検証。キーボード、マウス、マイク、スピーカーを数秒でテスト。すべてブラウザ上で完結、登録不要・完全無料。</p>
-      <div style="margin-top: 2rem;">
-        <a href="keyboard-test.html" class="btn btn-primary" style="margin: 0.5rem; font-size: 1.1rem; padding: 1rem 2rem;">キーボードテストを開始</a>
+      <div class="hero-cta">
+        <a href="keyboard-test.html" class="btn btn-primary">キーボードテストを開始</a>
       </div>
     </section>
 
     <!-- Core Tool Cards -->
     <div class="tool-grid">
       <a href="keyboard-test.html" class="tool-card">
-        <div class="tool-icon">⌨️</div>
+        <div class="tool-icon" aria-hidden="true">⌨️</div>
         <h3>キーボードテスト</h3>
         <p>すべてのキー入力を瞬時に確認。ゴースト問題、チャタリング、入力遅延をリアルタイムで検出し、正確な動作を保証します。</p>
         <span class="btn btn-primary">テストを開始</span>
       </a>
 
       <a href="mouse-test.html" class="tool-card">
-        <div class="tool-icon">🖱️</div>
+        <div class="tool-icon" aria-hidden="true">🖱️</div>
         <h3>マウス精度診断</h3>
         <p>左右・中央クリック、スクロールホイールの精度を確認。ゲーマーにとって重要なポーリングレートもリアルタイムで表示します。</p>
         <span class="btn btn-primary">テストを開始</span>
       </a>
 
       <a href="mic-test.html" class="tool-card">
-        <div class="tool-icon">🎙️</div>
+        <div class="tool-icon" aria-hidden="true">🎙️</div>
         <h3>マイクテスト</h3>
         <p>あなたの声がはっきり聞こえているか確認。入力レベルの可視化と明瞭度のチェックを行い、ビデオ会議や通話の準備を万全に。</p>
         <span class="btn btn-primary">テストを開始</span>
       </a>
 
       <a href="speaker-test.html" class="tool-card">
-        <div class="tool-icon">🔊</div>
+        <div class="tool-icon" aria-hidden="true">🔊</div>
         <h3>スピーカー診断</h3>
         <p>ステレオバランスと周波数スイープを実行。ノイズや音の歪みを検出し、スピーカーやヘッドホンの動作確認に最適です。</p>
         <span class="btn btn-primary">テストを開始</span>
       </a>
 
       <a href="speed-test.html" class="tool-card">
-        <div class="tool-icon">⚡</div>
+        <div class="tool-icon" aria-hidden="true">⚡</div>
         <h3>ネット速度テスト</h3>
-        <p>ダウンロード、アップロード、およびPing値を瞬時に測定。インターネット接続の安定性と速度を客観的に評価します。</p>
+        <p>ダウンロード、アップロード、およびPing値を測定。インターネット接続の安定性と速度を客観的に評価します。</p>
         <span class="btn btn-primary">テストを開始</span>
       </a>
     </div>
@@ -106,7 +153,7 @@
           私たちは単なる入力確認ツールにとどまらず、ハードウェアの挙動について技術的な洞察を提供します。
         </p>
         <ul>
-          <li><strong>キーボード診断:</strong> 一般的な入力確認だけでなく、同時押し（ゴースト）の検出や、メカニカルキーボードのチャタリング確認にも対応。</li>
+          <li><strong>キーボード診断:</strong> 一般的な入力確認だけでなく、同時押し（ゴースト）の検出や、メカニカルキーボードのチャタリング確認にも対応。詳しくは<a href="guides/keyboard-ghosting.html">キーボードのゴースト現象の解説ガイド</a>もご覧ください。</li>
           <li><strong>マウス指標:</strong> ゲーミングマウスの<strong>ポーリングレート</strong>（信号送信頻度）を可視化し、一貫した操作感を確認可能。</li>
           <li><strong>音声検証:</strong> スピーカーの周波数応答やマイクのゲインをチェック。プロフェッショナルな音声環境の構築をサポートします。</li>
         </ul>
@@ -136,9 +183,10 @@
       <a href="mouse-test.html">マウス</a>
       <a href="mic-test.html">マイク</a>
       <a href="speaker-test.html">スピーカー</a>
-      <a href="speed-test.html">スピードテスト</a>
+      <a href="speed-test.html">速度テスト</a>
+      <a href="guides/keyboard-ghosting.html">ゴースト解説ガイド</a>
     </div>
-    <p style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 DeviceTester 診断スイート. All rights reserved.</p>
+    <p class="footer-copy">&copy; 2026 DeviceTester 診断スイート. All rights reserved.</p>
   </footer>
 
 </body>
