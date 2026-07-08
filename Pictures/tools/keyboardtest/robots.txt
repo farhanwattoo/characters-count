@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://keyboardtest.com/sitemap.xml
+Sitemap: https://xn--nckya1bjc7izjb.com/sitemap.xml
