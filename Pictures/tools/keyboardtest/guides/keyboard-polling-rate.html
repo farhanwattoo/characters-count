@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キーボードのポーリングレート・応答速度ガイド | DeviceTester</title>
+  <meta name="description"
+    content="キーボードのポーリングレートとは何か。ゲーミングキーボードの応答速度、キーの同時押し数、ラグレスポンスについて完全解説。測定方法を含めて紹介。">
+  <link rel="canonical" href="https://xn--nckya1bjc7izjb.com/guides/keyboard-polling-rate.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="キーボードのポーリングレート・応答速度ガイド">
+  <meta property="og:description" content="キーボードのポーリングレートと応答速度。同時押し数、スイッチの種類、ゲーミングキーボードの選び方。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xn--nckya1bjc7izjb.com/guides/keyboard-polling-rate.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://xn--nckya1bjc7izjb.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="キーボードのポーリングレート・応答速度ガイド">
+  <meta name="twitter:description" content="キーボード応答速度、ポーリングレート、同時押し対応について完全解説。">
+  <meta name="twitter:image" content="https://xn--nckya1bjc7izjb.com/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "キーボードのポーリングレート・応答速度ガイド",
+      "description": "キーボードの応答速度とポーリングレート。ゲーミングキーボード選びの完全ガイド。",
+      "image": "https://xn--nckya1bjc7izjb.com/og-image.png",
+      "datePublished": "2025-07-13",
+      "inLanguage": "ja",
+      "isPartOf": {"@type": "WebSite", "url": "https://xn--nckya1bjc7izjb.com/"},
+      "author": {"@type": "Organization", "name": "DeviceTester"}
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "キーボードのポーリングレートはマウスと同じですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "同じ概念ですが異なります。キーボードも1秒間に何回キー入力をコンピュータに報告するか（Hz）を示します。ただし、キーボードは機械式か非機械式かで挙動が異なります。マウスと同じく125Hz～1000Hzが一般的です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "N-key rolloverとはなんですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "複数のキーを同時に押したときに、すべてのキー入力が正しく認識される機能。6キーロールオーバーなら6個まで、フルNキーロールオーバー（Full N-KRO）なら無制限に同時押しが認識されます。ゲーミングに重要。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ゴースティングって何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "複数キーを同時に押したとき、実際には押していないキーが入力されたと認識されるバグ。低品質キーボードに多い問題。N-key rollover対応キーボードでは起こりません。"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="brand"><span>Device</span>Tester</a>
+    <nav>
+      <a href="../index.html">ホーム</a>
+      <a href="../keyboard-test.html">キーボード</a>
+      <a href="../mouse-test.html">マウス</a>
+      <a href="../mic-test.html">マイク</a>
+      <a href="../speaker-test.html">スピーカー</a>
+      <a href="../speed-test.html">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="seo-section">
+      <div class="seo-content">
+        <h1>キーボードのポーリングレート・応答速度ガイド</h1>
+        <p>キーボードの応答速度とポーリングレートについて、初心者から上級者までわかる完全ガイド。ゲーミングキーボード選びから、同時押し検出（N-key rollover）まで詳しく解説します。</p>
+
+        <h2>キーボードのポーリングレートとは</h2>
+        <p>ポーリングレートは、キーボードがコンピュータにキー入力を報告する頻度（Hz）です。マウスと同じ概念です。</p>
+        <ul>
+          <li><strong>125Hz</strong>: 8ms間隔で報告（一般的なキーボード）</li>
+          <li><strong>250Hz</strong>: 4ms間隔で報告（ゲーミング）</li>
+          <li><strong>500Hz</strong>: 2ms間隔で報告（高速ゲーミング）</li>
+          <li><strong>1000Hz</strong>: 1ms間隔で報告（競技レベル）</li>
+        </ul>
+        <p>ポーリングレートが高いほど、キー入力がより即座にコンピュータに届きます。</p>
+
+        <h2>キースイッチの種類による応答速度</h2>
+        <p>キーボードのポーリングレートだけでなく、キースイッチの種類も重要です。</p>
+
+        <h3>機械式キースイッチ（メカニカルスイッチ）</h3>
+        <ul>
+          <li><strong>リニアスイッチ</strong>: 抵抗なくスムーズに押下。ゲーミングに最適。応答速度が速い。</li>
+          <li><strong>タクタイルスイッチ</strong>: 途中で「クリック感」がある。バランス型。</li>
+          <li><strong>クリッキースイッチ</strong>: 押下時に音が出る。感覚的な反応が得られる。</li>
+          <li><strong>応答速度</strong>: 平均 1～3ms で認識</li>
+        </ul>
+
+        <h3>非機械式キースイッチ</h3>
+        <ul>
+          <li><strong>メンブレン</strong>: ゴムドームが使われている。一般的・安価。</li>
+          <li><strong>パンタグラフ</strong>: 薄型ノートパソコン向け。応答速度は遅い。</li>
+          <li><strong>静電容量無接点</strong>: 高級キーボード。応答速度が極めて速い。</li>
+          <li><strong>応答速度</strong>: メンブレン系は 3～5ms 程度で遅い傾向</li>
+        </ul>
+
+        <h2>N-Key Rollover（同時押し認識）</h2>
+        <p>複数のキーを同時に押したときに、すべてのキー入力が正しく認識される機能です。</p>
+        <ul>
+          <li><strong>6KRO（6-Key Rollover）</strong>: 6個までのキー同時押しに対応。ビジネス向け。</li>
+          <li><strong>Full N-KRO</strong>: 何個のキーを同時に押してもすべて認識。ゲーミング必須。</li>
+        </ul>
+
+        <h2>キーボードゴースティング（Ghosting）</h2>
+        <p>複数キー同時押し時に、実際には押していないキーが入力されたと認識される現象です。</p>
+        <ul>
+          <li><strong>原因</strong>: キーボードの配線設計の制限。複数キー同時押しで配線が干渉。</li>
+          <li><strong>影響</strong>: ゲーム中に意図しないキー入力が発生</li>
+          <li><strong>対策</strong>: N-key rollover対応キーボードを選ぶ</li>
+          <li><strong>テスト方法</strong>: 複数キーを同時に押し、期待する文字列が出力されるか確認</li>
+        </ul>
+
+        <h2>デバウンス時間の理解</h2>
+        <p>キースイッチが押下されたときの電気的なチャタリング（ノイズ）を無視する時間です。</p>
+        <ul>
+          <li><strong>機械式キーボード</strong>: 5～10ms 程度</li>
+          <li><strong>ゲーミングキーボード</strong>: カスタマイズ可能（1～20ms）</li>
+          <li><strong>低すぎる</strong>: ノイズで多重登録</li>
+          <li><strong>高すぎる</strong>: 応答速度が低下</li>
+        </ul>
+
+        <h2>ゲーミングキーボード選びのポイント</h2>
+        <ol>
+          <li><strong>ポーリングレート</strong>: 最低500Hz、できれば1000Hz</li>
+          <li><strong>N-Key Rollover</strong>: Full N-KRO 必須</li>
+          <li><strong>キースイッチ</strong>: 機械式、リニアスイッチ推奨</li>
+          <li><strong>デバウンス</strong>: 1～5ms で設定可能</li>
+          <li><strong>ドライバ</strong>: カスタマイズ機能（マクロ、RGB）</li>
+          <li><strong>応答速度</strong>: 実測値確認推奨</li>
+        </ol>
+
+        <h2>DeviceTesterでのキーボード検査</h2>
+        <p>当サイトのキーボードテストツールで以下を確認できます：</p>
+        <ul>
+          <li>各キーの応答速度</li>
+          <li>同時押し数の測定</li>
+          <li>ゴースティング検出</li>
+          <li>キー入力履歴のログ記録</li>
+          <li>Page Down/Space等での誤動作検出</li>
+        </ul>
+        <p><a href="../keyboard-test.html" style="color: var(--primary); text-decoration: none;">キーボードテストツールを試す</a></p>
+
+        <h2>JIS配列とUSA配列の違い</h2>
+        <p>キーボードの物理配列も応答速度に影響します。</p>
+        <ul>
+          <li><strong>JIS配列</strong>: 日本語キーボード。Enterキーが大きく L字型。</li>
+          <li><strong>USA配列</strong>: US英語キーボード。Enterキーが小さく単純。ゲーマー向け。</li>
+          <li><strong>Enterキーのゴースティング</strong>: JIS配列のL字型Enterは同時押しテスト時に注意</li>
+        </ul>
+
+        <h2>ワイヤレスキーボードの遅延</h2>
+        <p>有線キーボードとワイヤレスキーボードの応答速度比較です。</p>
+        <ul>
+          <li><strong>有線（USB）</strong>: 1～3ms 程度。最小遅延</li>
+          <li><strong>Bluetooth</strong>: 5～20ms 程度。接続品質に依存</li>
+          <li><strong>2.4GHz無線</strong>: 1～10ms 程度。Bluetoothより安定</li>
+          <li><strong>ゲーミング</strong>: 有線が安心。ワイヤレスなら 2.4GHz 推奨</li>
+        </ul>
+
+        <h2>まとめ</h2>
+        <ul>
+          <li><strong>ポーリングレート</strong>: 高いほど良い。ゲームなら 1000Hz 推奨</li>
+          <li><strong>キースイッチ</strong>: 機械式、特にリニアスイッチが高速</li>
+          <li><strong>N-Key Rollover</strong>: ゲーミングには必須機能</li>
+          <li><strong>ゴースティング</strong>: 低品質キーボードの典型的問題</li>
+          <li><strong>実測</strong>: 当サイトで実際に応答速度を確認できます</li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(51, 65, 85, 0.6); color: var(--text-muted); font-size: 0.9rem;">
+          関連ガイド: <a href="keyboard-ghosting.html">キーボードゴースティング</a> | <a href="mouse-dpi-polling-rate.html">マウスのDPI・ポーリングレート</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer style="padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(51, 65, 85, 0.4);">
+    <p style="margin-bottom: 1rem;">DeviceTester © 2025 | <a href="../index.html" style="color: var(--text-muted); text-decoration: none;">ホーム</a> | <a href="keyboard-ghosting.html" style="color: var(--text-muted); text-decoration: none;">ガイド</a></p>
+  </footer>
+</body>
+
+</html>

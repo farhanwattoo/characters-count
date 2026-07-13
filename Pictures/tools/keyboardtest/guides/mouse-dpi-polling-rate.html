@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マウスのDPI・ポーリングレート完全ガイド | DeviceTester</title>
+  <meta name="description"
+    content="マウスのDPI設定とポーリングレートの違いを完全解説。ゲーミングマウスの選び方から最適な設定値まで、実際の測定方法を含めて紹介します。">
+  <link rel="canonical" href="https://xn--nckya1bjc7izjb.com/guides/mouse-dpi-polling-rate.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="マウスのDPI・ポーリングレート完全ガイド">
+  <meta property="og:description" content="マウスの応答速度を決める要因。DPI、ポーリングレート、加速度の理解と最適な設定を学ぶ。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xn--nckya1bjc7izjb.com/guides/mouse-dpi-polling-rate.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://xn--nckya1bjc7izjb.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="マウスのDPI・ポーリングレート完全ガイド">
+  <meta name="twitter:description" content="マウスの応答速度を決める要因。DPI、ポーリングレート、加速度の理解と最適な設定。">
+  <meta name="twitter:image" content="https://xn--nckya1bjc7izjb.com/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "マウスのDPI・ポーリングレート完全ガイド",
+      "description": "マウスの応答速度を決める要因。DPI、ポーリングレート、加速度の理解と最適な設定。",
+      "image": "https://xn--nckya1bjc7izjb.com/og-image.png",
+      "datePublished": "2025-07-13",
+      "inLanguage": "ja",
+      "isPartOf": {"@type": "WebSite", "url": "https://xn--nckya1bjc7izjb.com/"},
+      "author": {"@type": "Organization", "name": "DeviceTester"}
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "DPIとは何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DPI（Dots Per Inch）はマウスの感度を表す単位。マウスを1インチ動かしたときに、マウスポインタが画面上でどれだけ動くかを示します。DPIが高いほど感度が高くなり、少ない動きで大きくポインタが移動します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ポーリングレートはDPIと何が違いますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ポーリングレートはマウスがコンピュータにその位置を報告する頻度（Hz）。DIPは感度、ポーリングレートは応答速度です。125Hz、250Hz、500Hz、1000Hzが一般的です。ポーリングレートが高いほど、カーソル反応が敏感になります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ゲーミングに最適なDPI設定は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ゲーム・プレイスタイルにより異なります。FPS系：400-800DPI、MOBA系：800-1600DPI、クリック系：1600-3200DPI。低いDPIは精密操作に、高いDPIは素早い反応に向いています。自分に合った値を見つけることが重要です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ポーリングレート1000Hzは必要ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "競技的なゲーミングではメリットがありますが、日常使用なら500Hzで十分です。1000HzはUSB消費電力が増加し、遅延がわずかに減少（1ms）します。マウスパッドやマウスとの相性も重要です。"
+          }
+        }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://xn--nckya1bjc7izjb.com/"},
+        {"@type": "ListItem", "position": 2, "name": "マウステスト", "item": "https://xn--nckya1bjc7izjb.com/mouse-test.html"},
+        {"@type": "ListItem", "position": 3, "name": "DPI・ポーリングレートガイド"}
+      ]
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="brand"><span>Device</span>Tester</a>
+    <nav>
+      <a href="../index.html">ホーム</a>
+      <a href="../keyboard-test.html">キーボード</a>
+      <a href="../mouse-test.html">マウス</a>
+      <a href="../mic-test.html">マイク</a>
+      <a href="../speaker-test.html">スピーカー</a>
+      <a href="../speed-test.html">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="seo-section">
+      <div class="seo-content">
+        <h1>マウスのDPI・ポーリングレート完全ガイド</h1>
+        <p>マウスの応答速度と精度を決める2つの重要な要素「DPI」と「ポーリングレート」について、完全に解説します。ゲーミングからビジネス用途まで、最適な設定方法を学びましょう。</p>
+
+        <h2>DPI（感度）とは</h2>
+        <p>DPI（Dots Per Inch）は、マウスの感度を表す最重要パラメータです。</p>
+        <ul>
+          <li><strong>定義</strong>: マウスを1インチ（2.54cm）動かしたとき、マウスポインタが画面上で移動する距離（ドット数）</li>
+          <li><strong>標準値</strong>: 400～3200DPI（ゲーミングマウスは最大16000DPI以上も）</li>
+          <li><strong>低DPI</strong>: 精密操作に向く（CAD、画像編集、FPS）</li>
+          <li><strong>高DPI</strong>: 大きな画面操作に向く（4K、複数モニタ）</li>
+        </ul>
+
+        <h2>ポーリングレート（応答速度）とは</h2>
+        <p>ポーリングレートは、マウスがコンピュータにその位置を報告する頻度を示します。</p>
+        <ul>
+          <li><strong>単位</strong>: Hz（ヘルツ）。1秒間の報告回数</li>
+          <li><strong>一般的な値</strong>:
+            <ul>
+              <li>125Hz = 8msごとに報告（古いマウス）</li>
+              <li>250Hz = 4msごとに報告（標準）</li>
+              <li>500Hz = 2msごとに報告（ゲーミング）</li>
+              <li>1000Hz = 1msごとに報告（高性能）</li>
+            </ul>
+          </li>
+          <li><strong>影響</strong>: ポーリングレートが高いほど、入力遅延が減少します</li>
+        </ul>
+
+        <h2>DPIとポーリングレートの違い</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+          <tr style="background: rgba(51, 65, 85, 0.4);">
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">要素</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">DPI</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">ポーリングレート</th>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>意味</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">マウスの感度</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">応答速度</td>
+          </tr>
+          <tr style="background: rgba(59, 130, 246, 0.1);">
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>影響範囲</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">カーソルの移動距離</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">カーソルの反応速度</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>単位</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">dots per inch</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">Hz（回数/秒）</td>
+          </tr>
+        </table>
+
+        <h2>用途別の最適なDPI設定</h2>
+        <ul>
+          <li><strong>FPS（Counter-Strike等）</strong>: 400～800DPI
+            <ul>
+              <li>精密なヘッドショットが重要</li>
+              <li>低DPIで大きくマウスを動かすことで微調整が容易</li>
+            </ul>
+          </li>
+          <li><strong>MOBA（League of Legends等）</strong>: 800～1600DPI
+            <ul>
+              <li>カメラ操作と精密選択のバランス</li>
+              <li>ユーザーの好みで分かれる</li>
+            </ul>
+          </li>
+          <li><strong>クリック系ゲーム</strong>: 1600～3200DPI
+            <ul>
+              <li>大きな画面操作が多い</li>
+              <li>素早い反応が求められる</li>
+            </ul>
+          </li>
+          <li><strong>ビジネス用途</strong>: 800～1600DPI
+            <ul>
+              <li>複数ウィンドウ操作のバランス</li>
+              <li>快適さが最優先</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2>ポーリングレート選択ガイド</h2>
+        <ul>
+          <li><strong>125Hz</strong>: 古いマウスやワイヤレスマウス（バッテリー節約）</li>
+          <li><strong>250Hz</strong>: 日常用途、事務作業、ウェブ閲覧</li>
+          <li><strong>500Hz</strong>: ゲーミング、画像編集、高感度な作業</li>
+          <li><strong>1000Hz</strong>: 競技ゲーミング、FPS、高い要求精度</li>
+        </ul>
+
+        <h2>マウスとマウスパッドの相性</h2>
+        <p>DPI設定だけでなく、マウスとマウスパッドの相性も重要です：</p>
+        <ul>
+          <li><strong>光学センサー</strong>: ほとんどの表面で動作（最も一般的）</li>
+          <li><strong>レーザーセンサー</strong>: より高感度、ガラス面や光沢面でも使用可能</li>
+          <li><strong>マウスパッド</strong>: 布素材は追従性、プラスチックは低摩擦</li>
+          <li><strong>環境</strong>: 照明、デスク色、パッドの色がセンサー性能に影響</li>
+        </ul>
+
+        <h2>マウス加速度の理解</h2>
+        <p>ほとんどのゲーマーは「マウス加速度OFF」を推奨します：</p>
+        <ul>
+          <li><strong>加速度あり</strong>: マウスを速く動かすと、ポインタが指数的に速く動く</li>
+          <li><strong>加速度なし</strong>: マウス移動距離に対して、ポインタが一定の比率で動く</li>
+          <li><strong>ゲーミング</strong>: 加速度OFFで一貫性のある操作ができる</li>
+          <li><strong>ビジネス</strong>: 加速度ONの方が使いやすい場合が多い</li>
+        </ul>
+
+        <h2>DeviceTesterでのマウスポーリングレート測定</h2>
+        <p>当サイトのマウステストツールでリアルタイムにポーリングレートを測定できます：</p>
+        <ul>
+          <li>左クリック、右クリック、ホイールスクロール検出</li>
+          <li>実際のポーリングレート（Hz）表示</li>
+          <li>クリック数カウント</li>
+          <li>タイミングの正確性確認</li>
+        </ul>
+        <p><a href="../mouse-test.html" style="color: var(--primary); text-decoration: none;">マウステストツールを試す</a></p>
+
+        <h2>まとめ</h2>
+        <p>マウスの最適設定は用途と個人差によって異なります：</p>
+        <ul>
+          <li><strong>DPI</strong>: 得意な操作スタイルに合わせて選択（低DPI＝精密、高DPI＝大型操作）</li>
+          <li><strong>ポーリングレート</strong>: 競技的でなければ250～500Hzで十分</li>
+          <li><strong>テスト</strong>: 当サイトのマウステストで実際に確認できます</li>
+          <li><strong>試行錯誤</strong>: 快適さと反応速度のバランスを自分で見つけることが重要</li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(51, 65, 85, 0.6); color: var(--text-muted); font-size: 0.9rem;">
+          関連ガイド: <a href="keyboard-ghosting.html">キーボードゴースティング</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer style="padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(51, 65, 85, 0.4);">
+    <p style="margin-bottom: 1rem;">DeviceTester © 2025 | <a href="../index.html" style="color: var(--text-muted); text-decoration: none;">ホーム</a> | <a href="keyboard-ghosting.html" style="color: var(--text-muted); text-decoration: none;">ガイド</a></p>
+  </footer>
+</body>
+
+</html>

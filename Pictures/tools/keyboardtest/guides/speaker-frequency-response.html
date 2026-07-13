@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スピーカー周波数応答・音質ガイド | DeviceTester</title>
+  <meta name="description"
+    content="スピーカーの周波数応答、帯域幅、音質について完全解説。ゲーミングスピーカー・ヘッドセット選びから、周波数範囲の理解まで。測定方法も紹介。">
+  <link rel="canonical" href="https://xn--nckya1bjc7izjb.com/guides/speaker-frequency-response.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="スピーカー周波数応答・音質ガイド">
+  <meta property="og:description" content="スピーカーの周波数応答と音質。ヘッドセット・ゲーミングスピーカー選びの完全ガイド。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xn--nckya1bjc7izjb.com/guides/speaker-frequency-response.html">
+  <meta property="og:site_name" content="DeviceTester">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://xn--nckya1bjc7izjb.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="スピーカー周波数応答・音質ガイド">
+  <meta name="twitter:description" content="スピーカー周波数応答を理解する。ヘッドセット・スピーカー選びの方法。">
+  <meta name="twitter:image" content="https://xn--nckya1bjc7izjb.com/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "スピーカー周波数応答・音質ガイド",
+      "description": "スピーカー周波数応答について完全解説。ヘッドセット・スピーカー選び。",
+      "image": "https://xn--nckya1bjc7izjb.com/og-image.png",
+      "datePublished": "2025-07-13",
+      "inLanguage": "ja",
+      "isPartOf": {"@type": "WebSite", "url": "https://xn--nckya1bjc7izjb.com/"},
+      "author": {"@type": "Organization", "name": "DeviceTester"}
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "周波数応答とはなんですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "スピーカーが再生できる周波数（音の高さ）の範囲を示す仕様です。例えば「20Hz～20kHz」は、低い音から高い音まで幅広く再生できることを意味します。人間が聞こえる周波数は通常 20Hz～20kHz とされています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hz と kHz の違いは？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hz（ヘルツ）は周波数の単位。1秒間の振動回数を示します。kHz は 1000Hz を示します。低い音（ベース）は 20～200Hz、中間音（ボーカル）は 200～2000Hz、高い音（ツイーター）は 2000～20000Hz です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ゲーミングに最適なスピーカーの周波数応答は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "理想は 20Hz～20kHz の全周波数対応ですが、実効的には 50Hz～15kHz で十分です。ゲーミングでは、足音などの低音と、叫び声などの高音の両方が大切。バランス型のスピーカーが推奨されます。"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="brand"><span>Device</span>Tester</a>
+    <nav>
+      <a href="../index.html">ホーム</a>
+      <a href="../keyboard-test.html">キーボード</a>
+      <a href="../mouse-test.html">マウス</a>
+      <a href="../mic-test.html">マイク</a>
+      <a href="../speaker-test.html">スピーカー</a>
+      <a href="../speed-test.html">速度テスト</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="seo-section">
+      <div class="seo-content">
+        <h1>スピーカー周波数応答・音質ガイド</h1>
+        <p>スピーカーやヘッドセットの「周波数応答」について、初心者にもわかる完全ガイド。ゲーミング、映画鑑賞、音楽制作など、用途別の選び方と周波数応答の読み方を詳しく解説します。</p>
+
+        <h2>周波数応答とは</h2>
+        <p>周波数応答（Frequency Response）は、スピーカーやヘッドセットが再生できる音の周波数（高さ）の範囲を示す仕様です。</p>
+        <ul>
+          <li><strong>単位</strong>: Hz（ヘルツ）と kHz（キロヘルツ）</li>
+          <li><strong>表記例</strong>: 「20Hz～20kHz」「50Hz～15kHz」</li>
+          <li><strong>意味</strong>: 最初の数字が最も低い周波数、後の数字が最も高い周波数</li>
+          <li><strong>人間の聴覚</strong>: 通常 20Hz～20kHz の範囲で聞こえます</li>
+        </ul>
+
+        <h2>周波数帯の分類</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+          <tr style="background: rgba(51, 65, 85, 0.4);">
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">周波数帯</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">範囲</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">音の特徴</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(51, 65, 85, 0.6);">例</th>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>超低音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">20～50Hz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">感じる音。存在感がある</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">ベースギター、爆発音</td>
+          </tr>
+          <tr style="background: rgba(59, 130, 246, 0.1);">
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>低音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">50～250Hz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">温かみのある音。力強い</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">キック音、足音、エンジン音</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>低中音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">250～500Hz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">温もり。厚みがある</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">男性ボーカル、タンバリン</td>
+          </tr>
+          <tr style="background: rgba(59, 130, 246, 0.1);">
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>中音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">500～2kHz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">会話、ボーカルが明確</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">人間の声、ピアノ</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>高中音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">2kHz～4kHz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">細部、明確さ</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">女性ボーカル、ギター</td>
+          </tr>
+          <tr style="background: rgba(59, 130, 246, 0.1);">
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>高音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">4kHz～8kHz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">きつい音。詳細</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">シンバル、はしがき音</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);"><strong>高高音</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">8kHz～20kHz</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">空気感。透明感</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.6);">ビブラート、ハイハット</td>
+          </tr>
+        </table>
+
+        <h2>用途別の最適な周波数応答</h2>
+        <h3>ゲーミング</h3>
+        <ul>
+          <li><strong>推奨</strong>: 50Hz～15kHz</li>
+          <li><strong>重要な帯域</strong>: 低音（足音、爆発）と高音（キャラクターの叫び声）の両方</li>
+          <li><strong>特性</strong>: バランス型。低音に強すぎるとうるさくなる</li>
+          <li><strong>選択ポイント</strong>: イコライザーでカスタマイズできるモデルが理想的</li>
+        </ul>
+
+        <h3>映画・ドラマ視聴</h3>
+        <ul>
+          <li><strong>推奨</strong>: 20Hz～20kHz</li>
+          <li><strong>重要な帯域</strong>: 低音（効果音）と中高音（ボーカル）</li>
+          <li><strong>特性</strong>: 広帯域対応。低音エフェクトと会話の両方を重視</li>
+          <li><strong>選択ポイント</strong>: 5.1 または 7.1 サラウンド対応が理想的</li>
+        </ul>
+
+        <h3>音楽制作・DTM</h3>
+        <ul>
+          <li><strong>推奨</strong>: 20Hz～20kHz（フラット特性）</li>
+          <li><strong>重要な帯域</strong>: すべての帯域がフラット（同じ大きさ）</li>
+          <li><strong>特性</strong>: モニタリング用。音を正確に再現する必要がある</li>
+          <li><strong>選択ポイント</strong>: 「フラット周波数応答」と明記されたモデル</li>
+        </ul>
+
+        <h3>ボーカル・ポッドキャスト</h3>
+        <ul>
+          <li><strong>推奨</strong>: 100Hz～10kHz</li>
+          <li><strong>重要な帯域</strong>: 200Hz～8kHz（人間の声の範囲）</li>
+          <li><strong>特性</strong>: 中音に強い。ボーカルが明確に聞こえる</li>
+          <li><strong>選択ポイント</strong>: ボーカル強調タイプ</li>
+        </ul>
+
+        <h2>周波数応答の読み方</h2>
+        <p>スペック表の周波数応答をどう読むか：</p>
+        <ul>
+          <li><strong>「20Hz～20kHz」</strong>: 理想的。人間が聞こえるすべての周波数に対応</li>
+          <li><strong>「50Hz～15kHz」</strong>: 実用的。日常用途では十分</li>
+          <li><strong>「100Hz～10kHz」</strong>: 限定的。ボーカル中心</li>
+          <li><strong>「20Hz～20kHz ±5dB」</strong>: ±5dB の範囲でフラット。高精度</li>
+        </ul>
+
+        <h2>周波数応答と音質の関係</h2>
+        <ul>
+          <li><strong>広帯域 = 高音質ではない</strong>: 最も重要なのは「フラット性」</li>
+          <li><strong>フラット特性</strong>: 低音から高音まで同じ大きさで再現</li>
+          <li><strong>ブースト特性</strong>: 特定帯域を強調（ゲーミング向け）</li>
+          <li><strong>ドリップ特性</strong>: 特定帯域を減衰（リスニング向け）</li>
+        </ul>
+
+        <h2>スピーカーの種類と周波数応答</h2>
+        <ul>
+          <li><strong>フルレンジスピーカー</strong>: 全周波数対応。バランス型</li>
+          <li><strong>ウーファー</strong>: 低音専用。100Hz 以下を担当</li>
+          <li><strong>ツイーター</strong>: 高音専用。2kHz 以上を担当</li>
+          <li><strong>マルチドライバースピーカー</strong>: 複数ドライバーで周波数帯を分担。高音質</li>
+        </ul>
+
+        <h2>DeviceTesterでのスピーカー検査</h2>
+        <p>当サイトのスピーカーテストツールで以下を確認できます：</p>
+        <ul>
+          <li>左右スピーカーのバランス確認</li>
+          <li>各周波数帯のテスト音生成</li>
+          <li>周波数応答の実測定</li>
+          <li>スピーカー不具合の早期発見</li>
+        </ul>
+        <p><a href="../speaker-test.html" style="color: var(--primary); text-decoration: none;">スピーカーテストツールを試す</a></p>
+
+        <h2>まとめ</h2>
+        <ul>
+          <li><strong>周波数応答</strong>: スピーカーが再生できる音の周波数範囲</li>
+          <li><strong>理想値</strong>: 20Hz～20kHz。実用的には 50Hz～15kHz で十分</li>
+          <li><strong>用途別選択</strong>: ゲーミング、映画、音楽制作で求められる周波数帯が異なる</li>
+          <li><strong>フラット性</strong>: 広帯域より「フラット特性」が重要</li>
+          <li><strong>測定</strong>: 当サイトのツールで実際のスピーカー性能を確認できます</li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(51, 65, 85, 0.6); color: var(--text-muted); font-size: 0.9rem;">
+          関連ガイド: <a href="microphone-latency.html">マイクレイテンシー</a> | <a href="mouse-dpi-polling-rate.html">マウスDPI</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer style="padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(51, 65, 85, 0.4);">
+    <p style="margin-bottom: 1rem;">DeviceTester © 2025 | <a href="../index.html" style="color: var(--text-muted); text-decoration: none;">ホーム</a> | <a href="keyboard-ghosting.html" style="color: var(--text-muted); text-decoration: none;">ガイド</a></p>
+  </footer>
+</body>
+
+</html>
